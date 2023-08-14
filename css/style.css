@@ -1,0 +1,11 @@
+html, body{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+header{
+    position: fixed;
+    height: 50px;
+    width: 100%;
+    background: #000;
+}
