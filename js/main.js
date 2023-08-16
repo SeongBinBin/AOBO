@@ -31,7 +31,7 @@ boxofficeDate.innerHTML = `${year}년 ${month}월 ${day}일의 박스오피스`
 fetch(`https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=4780929b900d6e7e32787f2fc7dfac8e&targetDt=${formattedDate}`)
     .then(response => response.json())
     .then(data => {
-        const movieCode = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.movieCd)
+        // const movieCode = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.movieCd)
 
         const movieTitle = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.movieNm)
         const rank = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.rank)                 // 해당일자의 박스오피스 순위를 출력합니다.
