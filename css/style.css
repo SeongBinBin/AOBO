@@ -1,11 +1,16 @@
-html, body{
+@import url('header.css');
+@import url('main.css');
+
+body{
     margin: 0;
     box-sizing: border-box;
+    background-color: rgba(193, 198, 203, .4);
+    overflow-x: hidden;
 }
 
-header{
-    position: fixed;
-    height: 50px;
-    width: 100%;
-    background: #000;
+.hide{
+    display: none;
+}
+.show{
+    display: block;
 }
