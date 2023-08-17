@@ -56,6 +56,32 @@ header{
     top: 50px;
 }
 
+.date_input{
+    display: flex;
+    margin-right: auto;
+    margin-left: auto;
+    height: 25px;    
+}
+.select_date{
+    height: 22px;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #12192f;
+    font-size: 15px;
+    padding-left: 3px; padding-bottom: 3px;
+    border-bottom-left-radius: 5px; border-top-left-radius: 5px;
+    border: 1px solid #c7c6c4;
+    background-color: rgba(232, 233, 235, .7);
+}
+.search{
+    height: 100%;
+    font-size: 25px;
+    color: #12192f;
+    border: 1px solid #c7c6c4;
+    border-bottom-right-radius: 5px; border-top-right-radius: 5px;
+    cursor: pointer;
+    background-color: rgba(232, 233, 235, .7);
+}
+
 @media (max-width: 500px) {
     .header_popup{
         font-size: 30px;

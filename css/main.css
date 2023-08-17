@@ -34,34 +34,62 @@
     margin-top: 10px; margin-bottom: 10px;
 }
 
-.boxoffice_info{
+.boxoffice_info, .more_Modal{
     position: fixed;
     width: 800px;
     height: 700px;
-    top: 200px; right: 10%;
+    top: 150px; right: 10%;
     background-color: rgb(193, 198, 203);
     display: flex;
     flex-direction: column;
 }
-.info_close{
+.info_close, .more_close{
     position: absolute;
     right: 0;
     margin-top: 5px; margin-right: 5px;
     cursor: pointer;
 }
-.boxoffice_info ul{
+.go_back{
+    position: absolute;
+    left: 0;
+    margin-top: 10px; margin-left: 10px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.boxoffice_info ul, .more_Modal ul{
     width: 100%;
     margin-left: 50px;
 }
-.boxoffice_info_name{
+.boxoffice_info_name, .movieNm{
     font-size: 20px;
     font-weight: bold;
-    margin-top: 50px;
+    margin-top: 70px;
     margin-left: 50px;
 }
-.boxoffice_info ul li{
+.boxoffice_info ul li, .more_Modal ul li{
     margin-bottom: 10px;
     list-style-type: circle;
+}
+.more_info{
+    position: absolute;
+    right: 50px; bottom: 50px;
+    cursor: pointer;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: rgba(18, 25, 47, .8);
+    border: none;
+    outline: none;
+    background-color: inherit;
+    font-size: 15px;
+    border-radius: 5px;
+    border: 1px solid rgba(103, 108, 117, .3);
+}
+.more_info:hover{
+    background-color: rgba(103, 108, 117, .2);
+}
+
+.hide_movie_code, .movie_code{
+    display: none;
 }
 
 .go_up{
