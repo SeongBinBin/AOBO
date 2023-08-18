@@ -38,7 +38,6 @@
     position: fixed;
     width: 800px;
     height: 700px;
-    /* top: 150px; right: 10%; */
     top: 50%; left: 65%;
     transform: translate(-50%, -50%);
     background-color: rgb(193, 198, 203);
@@ -102,14 +101,47 @@
     cursor: pointer;
 }
 
-@media (max-width: 391px) {
+@media (max-width: 1000px) {
+    .boxoffice_info, .more_Modal{
+        width: 800px;
+        height: 700px;
+        top: 50%; left: 50%;
+        margin-top: 30px;
+    }   
+}
+
+@media (max-width: 720px) {
+    .boxoffice_date{
+        left: 0;
+        text-align: center;
+    }
+    .item{
+        left: 0;
+        margin: 0 auto;
+    }
+    .boxoffice_info, .more_Modal{
+        width: 650px;
+        height: 700px;
+        top: 50%; left: 50%;
+    } 
+}
+
+@media (max-width: 600px) {
+    .boxoffice_info, .more_Modal{
+        width: 550px;
+        height: 700px;
+        top: 50%; left: 50%;
+    } 
+}
+
+@media (max-width: 450px) {
     .boxoffice_date{
         top: 120px;
         font-size: 22px;
     }
     .item{
         width: 300px;
-        top: 150px; left: 11%;
+        top: 150px; left: 0;
     }
     .movie_img{
         height: 300px;
@@ -139,19 +171,3 @@
         font-size: 12px;
     }
 }
-
-/* @media (max-width: 500px) {
-    .item{
-        width: 300px;
-    }
-    .moive_img{
-        height: 300px;
-    }
-    .boxoffice_info{
-        width: 370px;
-        height: 550px;
-    }
-    .boxoffice_info ul{
-        margin-top: 70px;
-    }
-} */
