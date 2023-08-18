@@ -227,7 +227,7 @@ const modalShowTypesStr = document.querySelector('.showTypesStr')
 const modalCompanys = document.querySelector('.companys')
 const modalAudits = document.querySelector('.audits')
 
-function changeModal(e){
+function changeModal(){
     boxofficeInfo.classList.remove('show')
     boxofficeInfo.classList.add('hide')
 
