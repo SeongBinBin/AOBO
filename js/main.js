@@ -110,7 +110,8 @@ function popupModal(e) {
     const clickedIndex = Array.from(choseItem).indexOf(e.currentTarget)
     boxofficeInfo.classList.remove('hide')
     boxofficeInfo.classList.add('show')
-    moveTop.classList.add('hide')
+    moveTop.classList.remove('show')
+    moveTop.classList.add('cloaking')
 
     const MovieCode = movieCode[clickedIndex]; hidemovieCode.innerHTML = `${MovieCode}`
     const MovieTitle = movieTitle[clickedIndex]; boxofficeInfoName.innerHTML = `${year}년 ${month}월 ${day}일 '${MovieTitle}' 정보` 
@@ -204,7 +205,7 @@ for(let item of choseItem){
 function closeModal(){
     boxofficeInfo.classList.remove('show')
     boxofficeInfo.classList.add('hide')
-    moveTop.classList.remove('hide')
+    moveTop.classList.remove('cloaking')
     moveTop.classList.add('show')
 }
 infoClose.addEventListener('click', closeModal)
