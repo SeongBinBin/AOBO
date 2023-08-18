@@ -100,7 +100,44 @@
     cursor: pointer;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 391px) {
+    .boxoffice_date{
+        top: 120px;
+        font-size: 22px;
+    }
+    .item{
+        width: 300px;
+        top: 150px; left: 11%;
+    }
+    .movie_img{
+        height: 300px;
+    }
+    .go_up{
+        right: 35px; bottom: 0;
+        font-size: 30px;
+    }
+
+    .boxoffice_info, .more_Modal{
+        width: 370px;
+        height: 650px;
+        top: 140px; right: 12%;
+    }    
+    .boxoffice_info ul, .more_Modal ul{
+        margin-left: 20px;
+        font-size: 12px;
+    }
+    .boxoffice_info_name, .movieNm{
+        margin-top: 60px;
+        font-size: 15px;
+        margin-left: 20px;
+    }
+    .more_info{
+        right: 20px; bottom: 50px;
+        font-size: 12px;
+    }
+}
+
+/* @media (max-width: 500px) {
     .item{
         width: 300px;
     }
@@ -114,4 +151,4 @@
     .boxoffice_info ul{
         margin-top: 70px;
     }
-}
+} */

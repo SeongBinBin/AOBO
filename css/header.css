@@ -1,7 +1,7 @@
 header{
     position: fixed;
     height: 50px;
-    width: 100%;
+    width: 100vw;
     background: #e4e0dd;
     border-bottom: 1px solid #c7c6c4;
     font-family: 'Inter', sans-serif;
@@ -14,12 +14,19 @@ header{
 }
 
 .header_popup{
-    font-weight: bold;
+    margin-top: 5px;
+    /* font-weight: bold; */
     font-size: 35px;
     cursor: pointer;
     margin-left: 15px;
 }
 
+.title_name{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    cursor: pointer;
+}
 .header_title{
     color: #12192f;
     text-decoration: none;
@@ -27,7 +34,13 @@ header{
     font-size: 20px;
     margin-right: auto;
     margin-left: 35px;
-    cursor: pointer;
+}
+.AOBO_info{
+    color: #12192f;
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: bold;
+    margin-left: 18px;
 }
 
 .header_group{
@@ -49,11 +62,78 @@ header{
 
 .popup_list{
     position: fixed;
-    width: 200px;
-    height: 100%;
+    width: 300px;
+    height: 240px;
     background: #e4e0dd;
     border-right: 1px solid #c7c6c4;
     top: 50px;
+    display: flex;
+    flex-direction: column;
+}
+.icon_box{
+    width: 35px;
+    height: 35px;
+    background: #e4e0dd;
+    position: fixed;
+    left: 300px;
+    border-right: 1px solid #c7c6c4;
+    border-bottom: 1px solid #c7c6c4;
+    cursor: pointer;
+}
+.popup_close{
+    color: #12192f;
+    position: absolute;
+    top: 50%; left: 60%;
+    transform: translate(-50%, -50%);
+}
+.popup_list h1{
+    color: #12192f;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 30px;
+}
+.input_login{
+    width: 98%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10px auto;
+    border-top: 1px solid #c7c6c4;
+}
+.input_login p{
+    width: 250px;
+    margin: 5px auto;
+}
+.input_login input{
+    width: 250px;
+    margin: 5px auto;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #c7c6c4;
+    background: #e4e0dd;
+}
+.input_login input::placeholder{
+    padding-left: 5px;
+    color: rgba(18, 25, 47, .3);
+}
+.input_btns{
+    display: flex;
+    /* flex-direction: column; */
+    width: 250px;
+    margin: 5px auto;
+    gap: 1px;
+}
+.login_btn, .signup_btn{
+    width: 50%;
+    /* color: #fff; */
+    background: #e8e9eb;
+    border: 1px solid #c7c6c4;
+    cursor: pointer;
+    color: rgba(18, 25, 47, .8);
+}
+.login_btn:hover, .signup_btn:hover{
+    background: rgba(199, 198, 196, .3);
 }
 
 .date_input{
@@ -82,7 +162,76 @@ header{
     background-color: rgba(232, 233, 235, .7);
 }
 
-@media (max-width: 500px) {
+@media (max-width: 391px){
+    .title_name{
+        margin-top: 5px;
+    }
+    .header_popup{
+        margin-top: 2px;
+        font-size: 30px;
+        margin-left: 5px;
+    }
+    .header_title{
+        font-size: 18px;
+        margin-left: 10px;
+    }
+    .AOBO_info{
+        display: none;
+    }
+    .header_group{
+        margin-right: 5px;
+        justify-content: space-evenly;
+        width: 150px;
+    }
+    .header_group a{
+        font-size: 12px;
+    }
+    .select_date{
+        width: 80px;
+        margin-left: 10px;
+        height: 22px;
+        font-size: 11px;
+        padding-right: 5px;
+    }
+    .search{
+        height: 100%;
+        font-size: 20px;
+        line-height: 25px;
+    }
+    
+    .popup_list{
+        width: 250px;
+        height: 220px;
+    }
+    .icon_box{
+        width: 30px;
+        height: 30px;
+        left: 250px;
+    }
+    .popup_close{
+        left: 70%;
+    }
+    .popup_list h1{
+        font-size: 15px;
+        margin-top: 30px;
+    }
+    .input_login{
+        width: 95%;
+        margin: 13px auto;
+    }
+    .input_login p{
+        width: 200px;
+    }
+    .input_login input{
+        width: 200px;
+    }
+    .input_btns{
+        width: 200px;
+        gap: 1px;
+    }
+}
+
+/* @media (max-width: 500px) {
     .header_popup{
         font-size: 30px;
         margin-left: 10px;
@@ -99,4 +248,4 @@ header{
     .header_group a{
         font-size: 15px;
     }
-}
+} */

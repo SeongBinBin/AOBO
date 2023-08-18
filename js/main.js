@@ -40,8 +40,8 @@ const search = document.querySelector('.search')
 
 function openSearch(){
     if (inputDate.value) {
-        const searchUrl = `html/search.html?date=${inputDate.value}`;
-        window.location.href = searchUrl;
+        const searchUrl = `html/search.html?date=${inputDate.value}`
+        window.location.href = searchUrl
     } else {
         alert("날짜를 선택해주세요.")
     }
@@ -72,7 +72,6 @@ fetch(`https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBox
 
         for(let i = 0; i < movieTitle.length; i++){
             changeText(i, 'movie_title', `${i + 1}위 | ${movieTitle[i]}`)
-            changeText(i, 'movie_code', `${movieCode[i]}`)
         }
     })
 function changeText(index, className, content) {
@@ -129,6 +128,73 @@ function popupModal(e) {
     const MovieSalesAcc = salesAcc[clickedIndex]; modalSalesAcc.innerHTML = `누적 매출액 | ${priceToString(MovieSalesAcc)}원`
     const MovieScrnCnt = scrnCnt[clickedIndex]; modalScrnCnt.innerHTML = `해당일자에 상영한 스크린수 | ${priceToString(MovieScrnCnt)}관`
     const MovieShowCnt = showCnt[clickedIndex]; modalShowCnt.innerHTML = `해당일자에 상영된 횟수 | ${priceToString(MovieShowCnt)}회`
+
+    let nextIndex = clickedIndex   // 클릭할때 index에 맞게 movieCode를 넣어주는 역할
+    if (nextIndex !== 0) {
+        nextIndex - 1
+    }
+
+    const getMovieCode = movieCode[nextIndex]
+
+    // 영화 상세정보 API에서 영화정보 가져오기
+    fetch(`http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json?key=${API_KEY}&movieCd=${getMovieCode}`)
+    .then(response => response.json())
+    .then(data => {
+        const movieInfo = data.movieInfoResult.movieInfo
+
+        movieNm = movieInfo.movieNm
+        showTm = movieInfo.showTm                                                  // 상영시간을 출력합니다.
+        typeNm = movieInfo.typeNm                                                  // 영화유형명을 출력합니다.
+        nationNm = movieInfo.nations[0].nationNm                                   // 제작국가를 나타냅니다.              
+        genres = movieInfo.genres.map(genre => genre.genreNm)                      // 장르명을 출력합니다. 
+        genreStr = genres.join(', ')
+        directors = movieInfo.directors[0].peopleNm                                // 감독을 나타냅니다.         
+        actors = movieInfo.actors.map(actor => actor.peopleNm)                     // 배우명을 출력합니다.         
+
+        showTypes = movieInfo.showTypes.map(showType => showType.showTypeGroupNm) // 상영형태 구분을 출력합니다.
+        const showTypesSet = new Set(showTypes)                                    // new Set을 사용해 중복 제거
+        showTypesStr = [...showTypesSet].join(', ')                               
+
+        companys = movieInfo.companys[0].companyNm                                 // 참여 영화사를 나타냅니다.
+        audits = movieInfo.audits[0].watchGradeNm                                 // 심의정보를 나타냅니다.
+        
+        changeText(0, 'movieNm', `${movieNm}`)
+        changeText(0, 'showTm', `상영 시간 | ${showTm}분`)
+        changeText(0, 'typeNm', `영화 유형 | ${typeNm}`)
+        changeText(0, 'nationNm', `제작 국가 | ${nationNm}`)
+        changeText(0, 'genreStr', `장르 | ${genreStr}`)
+        changeText(0, 'directors', `감독 | ${directors}`)
+        changeText(0, 'showTypesStr', `상영 형태 | ${showTypesStr}`)
+        changeText(0, 'companys', `영화사 | ${companys}`)
+        changeText(0, 'audits', `심의 정보 | ${audits}`)
+
+        const actorsContainer = document.querySelector('.actors_container')
+        actorsContainer.innerHTML = ''
+
+        if(actors.length === 0){
+            const actorsList = document.createElement('li')
+            actorsList.className = 'actors' 
+            const actorsTitle = document.createElement('p')
+            actorsTitle.textContent = '출연 배우 | 출연 배우 정보가 없습니다.'
+            actorsList.appendChild(actorsTitle)
+            actorsContainer.appendChild(actorsList)
+        }else{
+            const actorsList = document.createElement('li')
+            actorsList.className = 'actors' 
+            const actorsTitle = document.createElement('p')
+            const actorsTitle2 = document.createElement('p')
+            actorsTitle.textContent = '출연 배우'
+            actorsTitle2.textContent = '--------------'
+            actorsList.appendChild(actorsTitle)
+            actorsList.appendChild(actorsTitle2)
+            for (let i = 0; i < Math.min(5, actors.length); i++) {
+                const actorElement = document.createElement('p')
+                actorElement.textContent = actors[i]
+                actorsList.appendChild(actorElement)
+            }   
+            actorsContainer.appendChild(actorsList)
+        }
+    })
 }
 
 for(let item of choseItem){
@@ -142,48 +208,7 @@ function closeModal(){
 }
 infoClose.addEventListener('click', closeModal)
 
-// 영화 상세정보 API에서 영화정보 가져오기
-fetch(`http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json?key=${API_KEY}&movieCd=${getMovieCode}`)
-    .then(response => response.json())
-    .then(data => {
-        const movieInfo = data.movieInfoResult.movieInfo;
 
-        movieNm = movieInfo.movieNm
-        showTm = movieInfo.showTm                                                  // 상영시간을 출력합니다.
-        typeNm = movieInfo.typeNm                                                  // 영화유형명을 출력합니다.
-        nationNm = movieInfo.nations[0].nationNm                                   // 제작국가를 나타냅니다.              
-        genres = movieInfo.genres.map(genre => genre.genreNm)                      // 장르명을 출력합니다. 
-        genreStr = genres.join(', ')
-        directors = movieInfo.directors[0].peopleNm                                // 감독을 나타냅니다.         
-        actors = movieInfo.actors.map(actor => actor.peopleNm)                     // 배우명을 출력합니다.              
-        showTypes = movieInfo.showTypes.map(showType => showType.showTypeGroupNm)
-        showTypesStr = showTypes.join(', ')                                        // 상영형태 구분을 출력합니다.      
-        companys = movieInfo.companys[0].companyNm                                 // 참여 영화사를 나타냅니다.
-        audits = movieInfo.audits[0].watchGradeNm;                                 // 심의정보를 나타냅니다.
-        
-        changeText(0, 'movieNm', `${movieNm}`)
-        changeText(0, 'showTm', `상영 시간 | ${showTm}분`)
-        changeText(0, 'typeNm', `영화 유형 | ${typeNm}`)
-        changeText(0, 'nationNm', `제작 국가 | ${nationNm}`)
-        changeText(0, 'genreStr', `장르 | ${genreStr}`)
-        changeText(0, 'directors', `감독 | ${directors}`)
-        changeText(0, 'showTypesStr', `상영 형태 | ${showTypesStr}`)
-        changeText(0, 'companys', `영화사 | ${companys}`)
-        changeText(0, 'audits', `심의 정보 | ${audits}`)
-
-        const actorsList = document.querySelector('.actors');   
-        const actorsTitle = document.createElement('p');
-        const actorsTitle2 = document.createElement('p');
-        actorsTitle.textContent = '출연 배우';
-        actorsTitle2.textContent = '----------';
-        actorsList.appendChild(actorsTitle);
-        actorsList.appendChild(actorsTitle2);
-        for (let i = 0; i < Math.min(5, actors.length); i++) {
-            const actorElement = document.createElement('p');
-            actorElement.textContent = actors[i];
-            actorsList.appendChild(actorElement);
-        }   
-    })
 
 // 영화 상세정보 모달
 const moreModal = document.querySelector('.more_Modal')
@@ -206,19 +231,7 @@ function changeModal(e){
     boxofficeInfo.classList.add('hide')
 
     moreModal.classList.remove('hide')
-    moreModal.classList.add('show')
-    
-    // const clickedIndex = Array.from(choseItem).indexOf(e.currentTarget)
-
-    // const MovieShowTm = showTm[clickedIndex]; modalShowTm.innerHTML = `${MovieShowTm}`
-    // const MovieModalTypeNm = typeNm[clickedIndex]; modalTypeNm.innerHTML = `'${MovieModalTypeNm}' 정보` 
-    // const MovieRank = rank[clickedIndex]; modalRank.innerHTML = `박스오피스 순위 | ${MovieRank}위`
-    // const MovieRankInten = rankInten[clickedIndex]; modalRankInten.innerHTML = `전일 대비 순위 변동 | ${MovieRankInten}`
-    // const MovieOpenDt = openDt[clickedIndex]; modalOpenDt.innerHTML = `개봉일 | ${MovieOpenDt}`
-    // const MovieAudiCnt = audiCnt[clickedIndex]; modalAudiCnt.innerHTML = `해당일의 관객수 | ${priceToString(MovieAudiCnt)}명`
-    // const MovieAudiInten = audiInten[clickedIndex]; modalAudiInten.innerHTML = `전일 대비 관객수 증감분 | ${priceToString(MovieAudiInten)}명`
-    // const MovieAudiChange = audiChange[clickedIndex]; modalAudiChange.innerHTML = `전일 대비 관객수 증감 비율 | ${MovieAudiChange}%`
-    // const MovieAudiAcc = audiAcc[clickedIndex]; modalAudiAcc.innerHTML = `누적 관객수 | ${priceToString(MovieAudiAcc)}명`
+    moreModal.classList.add('show')    
 }
 
 function moreClose(){
@@ -255,3 +268,21 @@ function gotoTop(){
     })
 }
 moveTop.addEventListener('click', gotoTop)
+
+// 헤더 아이콘 클릭 시 로그인 및 추가 정보 팝업
+const headerPopup = document.querySelector('.header_popup')
+const popupList = document.querySelector('.popup_list')
+const popupClose = document.querySelector('.popup_close')
+
+function headerControl(){
+    headerPopup.classList.add('cloaking')
+    popupList.classList.remove('hide')
+    popupList.classList.add('show')
+}
+function closePopup(){
+    headerPopup.classList.remove('cloaking')
+    popupList.classList.remove('show')
+    popupList.classList.add('hide')
+}
+headerPopup.addEventListener('click', headerControl)
+popupClose.addEventListener('click', closePopup)

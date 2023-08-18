@@ -14,9 +14,12 @@
 <body>
     <header>
         <span class="material-symbols-outlined header_popup">
-            menu
+            person
         </span>
-        <a href="" class="header_title">AOBO</a> <!-- <div>All Of the Box_Office</div> -->
+        <div class="title_name">
+            <a href="" class="header_title">AOBO</a>
+            <div class="AOBO_info">All Of the Box Office</div>
+        </div>
         <div class="date_input">
             <input type="date" class="select_date" min="2004-01-01">
             <span class="material-symbols-outlined search">
@@ -29,6 +32,21 @@
             <a href="">CONTACT</a>
         </div>
         <div class="popup_list hide">
+            <div class="icon_box">
+                <span class="material-symbols-outlined popup_close">
+                    arrow_back_ios
+                </span>
+            </div>
+            <h1>박스오피스의 모든 것, <br>AOBO에 오신 것을 환영합니다!</h1>
+            <div class="input_login">
+                <p>SIGN IN</p>
+                <input type="text" placeholder="ID">
+                <input type="password" placeholder="PASSWORD">
+                <div class="input_btns">
+                    <button class="login_btn">LOG IN</button>
+                    <button class="signup_btn">SIGN UP</button>
+                </div>
+            </div>
 
         </div>
     </header>
@@ -73,6 +91,28 @@
             </ul>
 
             <button class="more_info">이 영화의 상세정보가 궁금하신가요?</button>
+        </div>
+
+        <div class="more_Modal hide">
+            <span class="material-symbols-outlined go_back">
+                arrow_back_ios
+            </span>
+            <span class="material-symbols-outlined more_close">
+                close
+            </span>
+            <p class="movieNm"></p>
+            <ul>
+                <li class="showTm"></li>
+                <li class="typeNm"></li>
+                <li class="nationNm"></li>
+                <li class="genreStr"></li>
+                <li class="directors"></li>
+                <div class="actors_container"><li class="actors"></li></div>
+                <li class="showTypesStr"></li>
+                <li class="companys"></li>
+                <li class="audits"></li>
+            </ul>
+
         </div>
 
         <span class="material-symbols-outlined go_up">

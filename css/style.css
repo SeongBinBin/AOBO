@@ -6,10 +6,14 @@ body{
     box-sizing: border-box;
     background-color: rgba(193, 198, 203, .4);
     overflow-x: hidden;
+    width: 100vw;
 }
 
 .hide{
     display: none;
+}
+.cloaking{
+    visibility:hidden;
 }
 .show{
     display: block;

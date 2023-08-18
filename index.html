@@ -14,9 +14,12 @@
 <body>
     <header>
         <span class="material-symbols-outlined header_popup">
-            menu
+            person
         </span>
-        <a href="" class="header_title">AOBO</a> <!-- <div>All Of the Box_Office</div> -->
+        <div class="title_name">
+            <a href="" class="header_title">AOBO</a>
+            <a href="" class="AOBO_info">All Of the Box Office</a>
+        </div>
         <div class="date_input">
             <input type="date" class="select_date" min="2004-01-01">
             <span class="material-symbols-outlined search">
@@ -24,11 +27,26 @@
             </span>
         </div>
         <div class="header_group">
-            <a href="index.html">HOME</a>
+            <a href="../index.html">HOME</a>
             <a href="">INFO</a>
             <a href="">CONTACT</a>
         </div>
         <div class="popup_list hide">
+            <div class="icon_box">
+                <span class="material-symbols-outlined popup_close">
+                    arrow_back_ios
+                </span>
+            </div>
+            <h1>박스오피스의 모든 것, <br>AOBO에 오신 것을 환영합니다!</h1>
+            <div class="input_login">
+                <p>SIGN IN</p>
+                <input type="text" placeholder="ID">
+                <input type="password" placeholder="PASSWORD">
+                <div class="input_btns">
+                    <button class="login_btn">LOG IN</button>
+                    <button class="signup_btn">SIGN UP</button>
+                </div>
+            </div>
 
         </div>
     </header>
@@ -89,7 +107,7 @@
                 <li class="nationNm"></li>
                 <li class="genreStr"></li>
                 <li class="directors"></li>
-                <li class="actors"></li>
+                <div class="actors_container"><li class="actors"></li></div>
                 <li class="showTypesStr"></li>
                 <li class="companys"></li>
                 <li class="audits"></li>
