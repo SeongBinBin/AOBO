@@ -121,7 +121,8 @@
         width: 360px;
         height: 570px;
         top: 90px;
-        left: 2%;
+        right: 11%;
+        margin-left: 50px;
     }    
     .boxoffice_info ul, .more_Modal ul{
         margin-left: 10px;
