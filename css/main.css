@@ -38,7 +38,9 @@
     position: fixed;
     width: 800px;
     height: 700px;
-    top: 150px; right: 10%;
+    /* top: 150px; right: 10%; */
+    top: 50%; left: 65%;
+    transform: translate(-50%, -50%);
     background-color: rgb(193, 198, 203);
     display: flex;
     flex-direction: column;
@@ -120,9 +122,10 @@
     .boxoffice_info, .more_Modal{
         width: 360px;
         height: 570px;
-        top: 90px;
+        top: 45%; left: 50%;
+        /* top: 90px;
         right: 11%;
-        margin-left: 50px;
+        margin-left: 50px; */
     }    
     .boxoffice_info ul, .more_Modal ul{
         margin-left: 10px;
