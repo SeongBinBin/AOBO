@@ -42,3 +42,14 @@ peopleNm - 배우명을 출력합니다.
 showTypeGroupNm - 상영형태 구분을 출력합니다.
 companys - 참여 영화사를 나타냅니다.
 audits - 심의정보를 나타냅니다.
+--------------------------------------------------------------------------------------------
+서버 구현 - 
+https://askforyou.tistory.com/30
+https://wjswhdgur123.tistory.com/57
+https://kth990303.tistory.com/81
+https://donggoolosori.github.io/2020/12/14/register/
+https://hyogeun-android.tistory.com/entry/3-MongoDb-%EC%82%AC%EC%9A%A9%EB%B2%95%EA%B3%BC-%EB%A1%9C%EA%B7%B8%EC%9D%B8%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85-%EB%A7%8C%EB%93%A4%EA%B8%B0
+https://velog.io/@kon6443/Node-JS-%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85-%EA%B5%AC%ED%98%84
+https://seoyun-is-connecting-the-dots.tistory.com/312?category=1052041
+https://jonnastudy.tistory.com/98
+

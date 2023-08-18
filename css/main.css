@@ -43,6 +43,7 @@
     background-color: rgb(193, 198, 203);
     display: flex;
     flex-direction: column;
+    border-radius: 10px;
 }
 .info_close, .more_close{
     position: absolute;
@@ -165,7 +166,7 @@
         margin-left: 20px;
     }
     .more_info{
-        right: 20px; bottom: 50px;
+        right: 20px; bottom: 30px;
         font-size: 12px;
     }
 }
