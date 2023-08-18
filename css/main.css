@@ -118,13 +118,13 @@
     }
 
     .boxoffice_info, .more_Modal{
-        width: 370px;
+        width: 350px;
         height: 570px;
         top: 90px;
         right: 11%;
     }    
     .boxoffice_info ul, .more_Modal ul{
-        margin-left: 20px;
+        margin-left: 10px;
         font-size: 12px;
     }
     .boxoffice_info_name, .movieNm{
