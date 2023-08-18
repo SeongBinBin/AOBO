@@ -146,6 +146,7 @@
         height: 300px;
     }
     .go_up{
+        right: 0px;
         font-size: 30px;
     }
 
