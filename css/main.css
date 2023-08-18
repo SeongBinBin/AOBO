@@ -119,8 +119,10 @@
 
     .boxoffice_info, .more_Modal{
         width: 370px;
-        height: 650px;
-        top: 140px; right: 12%;
+        height: 570px;
+        top: 90px;
+        /* right: 50px; */
+        margin: 0 auto;
     }    
     .boxoffice_info ul, .more_Modal ul{
         margin-left: 20px;

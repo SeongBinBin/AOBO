@@ -131,6 +131,7 @@ function popupModal(e) {
     const clickedIndex = Array.from(choseItem).indexOf(e.currentTarget)
     boxofficeInfo.classList.remove('hide')
     boxofficeInfo.classList.add('show')
+    moveTop.classList.add('hide')
     document.body.style.overflow = 'hidden'
 
     const MovieCode = movieCode[clickedIndex]; hidemovieCode.innerHTML = `${MovieCode}`
@@ -225,6 +226,8 @@ for(let item of choseItem){
 function closeModal(){
     boxofficeInfo.classList.remove('show')
     boxofficeInfo.classList.add('hide')
+    moveTop.classList.remove('hide')
+    moveTop.classList.add('show')
     document.body.style.overflow = ''
 }
 infoClose.addEventListener('click', closeModal)
