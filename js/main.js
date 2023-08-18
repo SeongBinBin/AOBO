@@ -111,7 +111,6 @@ function popupModal(e) {
     boxofficeInfo.classList.remove('hide')
     boxofficeInfo.classList.add('show')
     moveTop.classList.add('hide')
-    document.body.style.overflow = 'hidden'
 
     const MovieCode = movieCode[clickedIndex]; hidemovieCode.innerHTML = `${MovieCode}`
     const MovieTitle = movieTitle[clickedIndex]; boxofficeInfoName.innerHTML = `${year}년 ${month}월 ${day}일 '${MovieTitle}' 정보` 
@@ -207,7 +206,6 @@ function closeModal(){
     boxofficeInfo.classList.add('hide')
     moveTop.classList.remove('hide')
     moveTop.classList.add('show')
-    document.body.style.overflow = ''
 }
 infoClose.addEventListener('click', closeModal)
 
