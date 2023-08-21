@@ -15,6 +15,8 @@ c1c6cb
 
 20226431
 
+mongodb+srv://k971711:ngsb12345@cluster0.zqk9teo.mongodb.net/?retryWrites=true&w=majority
+
 movieNm - 영화명(국문)을 출력합니다.
 
 rank - 해당일자의 박스오피스 순위를 출력합니다.
@@ -52,4 +54,4 @@ https://hyogeun-android.tistory.com/entry/3-MongoDb-%EC%82%AC%EC%9A%A9%EB%B2%95%
 https://velog.io/@kon6443/Node-JS-%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85-%EA%B5%AC%ED%98%84
 https://seoyun-is-connecting-the-dots.tistory.com/312?category=1052041
 https://jonnastudy.tistory.com/98
-
+https://gamzaggang7.tistory.com/13
