@@ -392,6 +392,6 @@ header{
     }
     .id_check{
         font-size: 10px;
-        margin-left: 3px;
+        /* margin-left: 3px; */
     }
 }
