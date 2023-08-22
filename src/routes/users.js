@@ -25,6 +25,21 @@ router.post('/register', expressAsyncHandler(async (req, res, next) => {
     }
 }))
 
+router.post('/idcheck', expressAsyncHandler(async (req, res, next) => {
+    console.log(req.body)
+    const checkId = req.body.id
+
+    const sameUser = await User.findOne({
+        id: checkId
+    })
+
+    if(sameUser){
+        res.status(409).json({ code: 409, message: '중복된 ID입니다.' });
+    }else{
+        res.status(200).json({ code: 200, message: '사용가능한 ID입니다.' });
+    }
+}))
+
 router.post('/login', expressAsyncHandler(async (req, res, next) => {
     console.log(req.body)
     const loginUser = await User.findOne({

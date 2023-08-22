@@ -55,3 +55,6 @@ https://velog.io/@kon6443/Node-JS-%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85-%EA%B5%AC
 https://seoyun-is-connecting-the-dots.tistory.com/312?category=1052041
 https://jonnastudy.tistory.com/98
 https://gamzaggang7.tistory.com/13
+
+nodemon 에러 - 
+https://velog.io/@kimy/VS-CODE-supervisor-nodemon-%EC%98%A4%EB%A5%98-ps1-%ED%8C%8C%EC%9D%BC%EC%9D%84-%EB%A1%9C%EB%93%9C%ED%95%A0-%EC%88%98-%EC%97%86%EC%8A%B5%EB%8B%88%EB%8B%A4

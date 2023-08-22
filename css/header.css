@@ -54,7 +54,7 @@ header{
     font-size: 18px;
     cursor: pointer;
 }
-.header_group a:hover, .header_popup:hover{
+.header_group a:hover, .header_popup:hover, .id_check:hover{
     color: #676c75;
 }
 
@@ -163,7 +163,32 @@ header{
     font-size: 12px;
     margin-bottom: 0;
 }
-.input_signup input{
+.id_group{
+    margin-top: 3px;
+    margin-bottom: 10px;
+    display: flex;
+    width: 236px;
+    height: 15px;
+    padding: 7px;
+    border: 1px solid #c7c6c4;
+}
+.signup_id{
+    outline: none;
+    border: none;
+    background: #e4e0dd;
+    border-right: 1px solid #c7c6c4;
+}
+.id_check{
+    outline: none;
+    background: #e4e0dd;
+    border: none;
+    font-size: 12px;
+    cursor: pointer;
+    color: #12192f;
+    margin-left: 2px;
+    line-height: 15px;
+}
+.signup_email, .signup_password, .password_check{
     width: 236px;
     margin-top: 3px;
     margin-bottom: 10px;
@@ -346,7 +371,7 @@ header{
     .input_signup p{
         font-size: 10px;
     }
-    .input_signup input{
+    .signup_email, .signup_password, .password_check{
         width: 180px;
         margin-top: 3px;
         margin-bottom: 10px;
@@ -358,5 +383,15 @@ header{
     .signup_submit{
         width: 180px;
         margin: auto 7px;
+    }
+    .id_group{
+        width: 180px;
+    }
+    .signup_id{
+        width: 120px;
+    }
+    .id_check{
+        font-size: 10px;
+        margin-left: 3px;
     }
 }

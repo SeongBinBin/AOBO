@@ -1,3 +1,5 @@
+// const { response } = require("express")
+
 // 랜덤 대체 이미지 가져오기
 fetch('https://picsum.photos/v2/list?page=2&limit=20')
     .then(response => response.json())
@@ -289,18 +291,23 @@ const signupButton = document.querySelector('.signup_submit')
 const signupId = document.querySelector('.signup_id')
 const signupEmail = document.querySelector('.signup_email')
 const signupPassword = document.querySelector('.signup_password')
+const passwordCheck = document.querySelector('.password_check')
 signupButton.addEventListener('click', function(){
-    fetch('http://localhost:5500/api/users/register', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            id: signupId.value,
-            email: signupEmail.value,
-            password: signupPassword.value,
+    if(signupPassword.value !== passwordCheck.value){
+        alert('비밀번호가 일치하지않습니다.')
+    }else{
+        fetch('http://localhost:5500/api/users/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: signupId.value,
+                email: signupEmail.value,
+                password: signupPassword.value,
+            })
         })
-    })
+    }
 })
 
 // SIGN UP 버튼 클릭시 회원가입 창 표시
@@ -314,4 +321,30 @@ signupBtn.addEventListener('click', function(){
 
 signupClose.addEventListener('click', function(){
     popupSignup.classList.remove('show')
+})
+
+// 중복확인
+const idCheck = document.querySelector('.id_check')
+
+idCheck.addEventListener('click', function(){
+    fetch('http://localhost:5500/api/users/idcheck', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: signupId.value
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.code === 409){
+                alert('중복된 ID입니다.')
+            }else if(data.code === 200){
+                alert('사용 가능한 ID입니다.')
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error)
+        })
 })

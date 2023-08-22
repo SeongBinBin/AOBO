@@ -7,7 +7,7 @@ const userSchema = new Schema({ // 스키마 정의
     id: {
         type: String,
         required: true,
-        // unique: true,
+        unique: true,
         maxLength: 10,
     },
     email: {
