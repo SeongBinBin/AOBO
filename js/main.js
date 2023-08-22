@@ -202,13 +202,12 @@ for(let item of choseItem){
     item.addEventListener('click', popupModal)
 }
 
-function closeModal(){
+infoClose.addEventListener('click', function(){
     boxofficeInfo.classList.remove('show')
     boxofficeInfo.classList.add('hide')
     moveTop.classList.remove('cloaking')
     moveTop.classList.add('show')
-}
-infoClose.addEventListener('click', closeModal)
+})
 
 
 
@@ -228,29 +227,27 @@ const modalShowTypesStr = document.querySelector('.showTypesStr')
 const modalCompanys = document.querySelector('.companys')
 const modalAudits = document.querySelector('.audits')
 
-function changeModal(){
+moreInfo.addEventListener('click', function(){
     boxofficeInfo.classList.remove('show')
     boxofficeInfo.classList.add('hide')
 
     moreModal.classList.remove('hide')
-    moreModal.classList.add('show')    
-}
+    moreModal.classList.add('show')
+})
 
-function moreClose(){
+moreModalClose.addEventListener('click', function(){
     moreModal.classList.remove('show')
     moreModal.classList.add('hide')
     document.body.style.overflow = ''
-}
-function returnModal(){
+})
+
+goBack.addEventListener('click', function(){
     moreModal.classList.remove('show')
     moreModal.classList.add('hide')
 
     boxofficeInfo.classList.remove('hide')
     boxofficeInfo.classList.add('show')
-}
-moreInfo.addEventListener('click', changeModal)
-moreModalClose.addEventListener('click', moreClose)
-goBack.addEventListener('click', returnModal)
+})
 
 // 새로고침 시 스크롤을 맨 위로
 window.onload = function(){
@@ -276,15 +273,45 @@ const headerPopup = document.querySelector('.header_popup')
 const popupList = document.querySelector('.popup_list')
 const popupClose = document.querySelector('.popup_close')
 
-function headerControl(){
+headerPopup.addEventListener('click', function(){
     headerPopup.classList.add('cloaking')
     popupList.classList.remove('hide')
     popupList.classList.add('show')
-}
-function closePopup(){
+})
+popupClose.addEventListener('click', function(){
     headerPopup.classList.remove('cloaking')
     popupList.classList.remove('show')
     popupList.classList.add('hide')
-}
-headerPopup.addEventListener('click', headerControl)
-popupClose.addEventListener('click', closePopup)
+})
+
+// 회원가입
+const signupButton = document.querySelector('.signup_submit')
+const signupId = document.querySelector('.signup_id')
+const signupEmail = document.querySelector('.signup_email')
+const signupPassword = document.querySelector('.signup_password')
+signupButton.addEventListener('click', function(){
+    fetch('http://localhost:5500/api/users/register', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            id: signupId.value,
+            email: signupEmail.value,
+            password: signupPassword.value,
+        })
+    })
+})
+
+// SIGN UP 버튼 클릭시 회원가입 창 표시
+const signupBtn = document.querySelector('.signup_btn')
+const popupSignup = document.querySelector('.popup_signup')
+const signupClose = document.querySelector('.signup_close')
+
+signupBtn.addEventListener('click', function(){
+    popupSignup.classList.add('show')
+})
+
+signupClose.addEventListener('click', function(){
+    popupSignup.classList.remove('show')
+})

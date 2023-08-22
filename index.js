@@ -1,14 +1,28 @@
 var express = require('express')
 var app = express()
 var logger = require('morgan')
+var cors = require('cors')
 var mongoose = require('mongoose')
 var usersRouter = require('./src/routes/users')
-var config = require('./config')
+require('dotenv').config()
 
-mongoose.connect(config.MONGODB_URL)
-.then(() => console.log('MONGODB CONNECTED ... '))
-.catch(e => console.log(`FAILED TO CONNECT MONGODB: ${e}`))
+// var config = require('./config')
 
+var corsOptions = {
+    origin: 'http://127.0.0.1:5500',
+    credentials: true
+}
+
+mongoose.connect(process.env.DB_URL, {useNewUrlParser: true, useUnifiedTopology: true})
+.then(() => {
+    console.log('MONGODB CONNECTED ...')
+
+})
+.catch(err => {
+    console.log(err)
+})
+
+app.use(cors(corsOptions))
 app.use(express.json())
 app.use(logger('tiny'))
 
@@ -21,6 +35,6 @@ app.use((err, req, res, next) => {
     console.log(err.stack)
     res.status(500).send("Internal Server Error")
 })
-app.listen(5000, () => {
-    console.log('Server Is Running On Port 5000')
+app.listen(process.env.SERVER_PORT, () => {
+    console.log('Server Is Running On Port ' + process.env.SERVER_PORT)
 })

@@ -9,18 +9,18 @@ router.post('/register', expressAsyncHandler(async (req, res, next) => {
     console.log(req.body)
     const user = new User({
         id: req.body.id,
-        address: req.body.address,
+        email: req.body.email,
         password: req.body.password,
     })
     const newUser = await user.save()   // DB에 User 생성
     if(!newUser){
         res.status(401).json({code: 401, message: 'Invalid User Data'})
     }else{
-        const { id, address } = newUser
+        const { id, email } = newUser
         res.json({
             code: 200,
             token: generateToken(newUser),
-            id, address
+            id, email
         })
     }
 }))
@@ -34,11 +34,11 @@ router.post('/login', expressAsyncHandler(async (req, res, next) => {
     if(!loginUser){
         res.status(401).json({code: 401, message: 'Invalid Email or Password'})
     }else{
-        const { id, address } = loginUser
+        const { id, email } = loginUser
         res.json({
             code: 200,
             token: generateToken(loginUser),
-            id, address
+            id, email
         })
     }
 }))
@@ -54,15 +54,15 @@ router.put('/:id', isAuth, expressAsyncHandler(async (req, res, next) => {
         res.status(404).json({code: 404, message: 'User Not Founded'})
     }else{
         user.id = req.body.id || user.id
-        user.address = req.body.address || user.address
+        user.email = req.body.email || user.email
         user.password = req.body.password || user.password
 
         const updatedUser = await user.save()   // DB에 사용자정보 업데이트
-        const { id, address} = updatedUser
+        const { id, email} = updatedUser
         res.json({
             code: 200,
             token: generateToken(updatedUser),
-            id, address
+            id, email
         })
     }
 }))

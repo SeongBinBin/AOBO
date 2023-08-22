@@ -8,9 +8,9 @@ const userSchema = new Schema({ // 스키마 정의
         type: String,
         required: true,
         // unique: true,
-        maxLength: 30,
+        maxLength: 10,
     },
-    address: {
+    email: {
         type: String,
         required: true,
         maxLength: 100,
@@ -18,7 +18,7 @@ const userSchema = new Schema({ // 스키마 정의
     password: {
         type: String,
         required: true,
-        maxLength: 30,
+        maxLength: 10,
     },
 })
 
