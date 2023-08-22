@@ -261,6 +261,9 @@ header{
 }
 
 @media (max-width: 450px){
+    .title_name{
+        margin-bottom: 5px;
+    }
     .header_title{
         font-size: 18px;
         margin-left: 25px;
@@ -269,7 +272,6 @@ header{
         margin-left: 5px;
         width: 100px;
         font-size: 10px;
-        margin-bottom: 5px;
     }
     .header_group{
         margin-right: 5px;
