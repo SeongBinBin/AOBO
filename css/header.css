@@ -264,7 +264,7 @@ header{
     .header_title{
         font-size: 18px;
         margin-left: 25px;
-        margin-bottom: 0;
+        /* margin-bottom: 0; */
     }
     .AOBO_info{
         margin-left: 5px;
