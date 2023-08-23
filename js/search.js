@@ -228,7 +228,7 @@ for(let item of choseItem){
 function closeModal(){
     boxofficeInfo.classList.remove('show')
     boxofficeInfo.classList.add('hide')
-    moveTop.classList.remove('cloaking')
+    moveTop.classList.remove('hide')
     moveTop.classList.add('show')
 }
 infoClose.addEventListener('click', closeModal)
@@ -317,9 +317,10 @@ const signupId = document.querySelector('.signup_id')
 const signupEmail = document.querySelector('.signup_email')
 const signupPassword = document.querySelector('.signup_password')
 const passwordCheck = document.querySelector('.password_check')
+const signupInputs = document.querySelectorAll('.input_signup input')
 
 signupButton.addEventListener('click', function(){
-
+    
     if(signupPassword.value.length < 3){
         alert('비밀번호는 3글자 이상 입력해야합니다.')
     }else if(signupPassword.value !== passwordCheck.value){
@@ -333,7 +334,7 @@ signupButton.addEventListener('click', function(){
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                id: signupId.value,
+                userId: signupId.value,
                 email: signupEmail.value,
                 password: signupPassword.value,
             })
@@ -374,7 +375,7 @@ idCheck.addEventListener('click', function(){
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                id: signupId.value
+                userId: signupId.value
             })
         })
         .then(response => response.json())
@@ -405,7 +406,7 @@ loginBtn.addEventListener('click', function(){
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                id: loginId.value,
+                userId: loginId.value,
                 password: loginPw.value
             })
         })
@@ -418,9 +419,9 @@ loginBtn.addEventListener('click', function(){
             }else if(data.code === 200){
                 alert('로그인에 성공했습니다.')
                 localStorage.setItem('loggedIn', 'true')
-                localStorage.setItem('userId', loginId.value)
+                localStorage.setItem('personalId', loginId.value)
                 localStorage.setItem('token', data.token)
-                
+
                 inputLogin.classList.add('hide')
                 loginResult.classList.remove('hide')
                 loginResultId.innerHTML = `${loginId.value}님`
@@ -433,10 +434,10 @@ loginBtn.addEventListener('click', function(){
 window.onload = function() {    // 새로 고침해도 로그인 정보 유지
     const isLoggedIn = localStorage.getItem('loggedIn')
     if (isLoggedIn === 'true') {
-        const userId = localStorage.getItem('userId')
+        const personalId = localStorage.getItem('personalId')
         inputLogin.classList.add('hide')
         loginResult.classList.remove('hide')
-        loginResultId.innerHTML = `${userId}님`
+        loginResultId.innerHTML = `${personalId}님`
     }
 }
 
@@ -445,7 +446,8 @@ const logoutBtn = document.querySelector('.logout_btn')
 
 logoutBtn.addEventListener('click', function(){
     localStorage.removeItem('loggedIn')
-    localStorage.removeItem('userId')
+    localStorage.removeItem('personalId')
+    localStorage.removeItem('token')
 
     inputLogin.classList.remove('hide')
     loginResult.classList.add('hide')
