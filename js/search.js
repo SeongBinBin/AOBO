@@ -410,6 +410,8 @@ loginBtn.addEventListener('click', function(){
         .then(data => {
             if(data.code === 401){
                 alert('회원정보가 일치하지 않습니다.')
+                loginId.value = null
+                loginPw.value = null
             }else if(data.code === 200){
                 alert('로그인에 성공했습니다.')
                 localStorage.setItem('loggedIn', 'true')

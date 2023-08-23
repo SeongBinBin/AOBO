@@ -43,18 +43,24 @@ router.post('/idcheck', expressAsyncHandler(async (req, res, next) => {
 router.post('/login', expressAsyncHandler(async (req, res, next) => {
     console.log(req.body)
     const loginUser = await User.findOne({
-        id: req.body.id,
-        password: req.body.password,
+        id: req.body.id
     })
     if(!loginUser){
-        res.status(401).json({code: 401, message: 'Invalid Email or Password'})
-    }else{
-        const { id, email } = loginUser
-        res.json({
-            code: 200,
-            token: generateToken(loginUser),
-            id, email
-        })
+        res.status(401).json({code: 401, message: 'Invalid ID or Password'})
+    }else{  // 암호화된 비밀번호 로그인하기
+        const isMatch = await loginUser.comparePassword(req.body.password)
+        
+        if(isMatch){
+            const { id, email } = loginUser
+            res.json({
+                code: 200,
+                token: generateToken(loginUser),
+                id, email
+            })
+        }else{
+            res.status(401).json({code: 401, message: 'Invalid ID or Password'})
+        }
+        
     }
 }))
 
@@ -69,7 +75,7 @@ router.get('/logout', (req, res, next) => {
 })
 
 // isAuth : 사용자를 수정할 권한이 있는지 검사하는 미들웨어
-router.put('/:id', isAuth, expressAsyncHandler(async (req, res, next) => {
+router.post('/:id', expressAsyncHandler(async (req, res, next) => {
     const user = await User.findById(req.params.id)
     if(!user){
         res.status(404).json({code: 404, message: 'User Not Founded'})

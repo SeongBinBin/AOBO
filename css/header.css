@@ -222,7 +222,7 @@ header{
     border: 1px solid #c7c6c4;
     border-bottom: 1px solid #c7c6c4;
     background: #e4e0dd;
-    padding: 7px;
+    padding: 7px 10px;
     border-radius: 3px;
 }
 .input_signup input::placeholder{
