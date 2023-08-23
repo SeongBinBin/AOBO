@@ -14,12 +14,12 @@
 </head>
 <body>
     <header>
-        <span class="material-symbols-outlined header_popup">
+        <!-- <span class="material-symbols-outlined ">
             person
-        </span>
+        </span> -->
         <div class="title_name">
             <a href="" class="header_title">AOBO</a>
-            <div class="AOBO_info">All Of the Box Office</div>
+            <a href="" class="AOBO_info">All Of the Box Office</a>
         </div>
         <div class="date_input">
             <input type="date" class="select_date" min="2004-01-01">
@@ -30,25 +30,52 @@
         <div class="header_group">
             <a href="../index.html">HOME</a>
             <a href="">INFO</a>
-            <a href="">CONTACT</a>
+            <span class="header_popup">LOG IN</span>
         </div>
         <div class="popup_list hide">
             <div class="icon_box">
                 <span class="material-symbols-outlined popup_close">
-                    arrow_back_ios
+                    arrow_forward_ios
                 </span>
             </div>
             <h1>박스오피스의 모든 것, <br>AOBO에 오신 것을 환영합니다!</h1>
             <div class="input_login">
                 <p>SIGN IN</p>
-                <input type="text" placeholder="ID">
-                <input type="password" placeholder="PASSWORD">
+                <input type="text" class="login_id" placeholder="ID">
+                <input type="password" class="login_pw" placeholder="PASSWORD">
                 <div class="input_btns">
                     <button class="login_btn">LOG IN</button>
                     <button class="signup_btn">SIGN UP</button>
                 </div>
             </div>
-
+            <div class="login_result hide">
+                <p class="login_resultId"></p>
+                <p>반갑습니다!</p>
+                <div class="login_result_btns">
+                    <button class="update_btn">정보 수정</button>
+                    <button class="logout_btn">LOG OUT</button>
+                </div>
+            </div>
+            <div class="popup_signup">
+                <div class="input_signup">
+                    <span class="material-symbols-outlined signup_close">
+                        close
+                    </span>
+                    <h3>회원가입</h3>
+                    <p>아이디</p>
+                    <div class="id_group">
+                        <input type="text"name="id" class="signup_id" placeholder="아이디를 입력해주세요.">
+                        <button class="id_check">중복확인</button>
+                    </div>
+                    <p>이메일</p>
+                    <input type="text" name="email" class="signup_email" placeholder="이메일을 입력해주세요.">
+                    <p>비밀번호</p>
+                    <input type="password" name="password" class="signup_password" placeholder="비밀번호를 입력해주세요. [10자 이내]">
+                    <p>비밀번호 확인</p>
+                    <input type="password" name="password" class="password_check" placeholder="비밀번호 확인">
+                    <button type="submit" class="signup_submit">회원가입 완료</button>
+                </div>
+            </div>
         </div>
     </header>
 

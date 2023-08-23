@@ -307,3 +307,119 @@ function closePopup(){
 }
 headerPopup.addEventListener('click', headerControl)
 popupClose.addEventListener('click', closePopup)
+
+// 회원가입
+const signupButton = document.querySelector('.signup_submit')
+const signupId = document.querySelector('.signup_id')
+const signupEmail = document.querySelector('.signup_email')
+const signupPassword = document.querySelector('.signup_password')
+const passwordCheck = document.querySelector('.password_check')
+
+signupButton.addEventListener('click', function(){
+    if(signupPassword.value !== passwordCheck.value){
+        alert('비밀번호가 일치하지않습니다.')
+    }else{
+        fetch('http://localhost:5000/api/users/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: signupId.value,
+                email: signupEmail.value,
+                password: signupPassword.value,
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.code === 200){
+                alert('회원가입에 성공했습니다.')
+                popupSignup.classList.remove('show')
+                for(let input of signupInputs){ // 회원가입 성공 후 input 비워주기
+                    input.value = null
+                }
+            }
+        })
+    }
+})
+
+// SIGN UP 버튼 클릭시 회원가입 창 표시
+const signupBtn = document.querySelector('.signup_btn')
+const popupSignup = document.querySelector('.popup_signup')
+const signupClose = document.querySelector('.signup_close')
+
+signupBtn.addEventListener('click', function(){
+    popupSignup.classList.add('show')
+})
+
+signupClose.addEventListener('click', function(){
+    popupSignup.classList.remove('show')
+})
+
+// ID중복확인
+const idCheck = document.querySelector('.id_check')
+
+idCheck.addEventListener('click', function(){
+    fetch('http://localhost:5000/api/users/idcheck', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: signupId.value
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.code === 409){
+                alert('사용 불가능한 ID입니다.')
+            }else if(data.code === 200){
+                alert('사용 가능한 ID입니다.')
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error)
+        })
+})
+
+// 로그인
+const loginBtn = document.querySelector('.login_btn')
+const loginId = document.querySelector('.login_id')
+const loginPw = document.querySelector('.login_pw')
+const inputLogin = document.querySelector('.input_login')
+const loginResult = document.querySelector('.login_result')
+const loginResultId = document.querySelector('.login_resultId')
+
+loginBtn.addEventListener('click', function(){
+    fetch('http://localhost:5000/api/users/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: loginId.value,
+                password: loginPw.value
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.code === 401){
+                alert('회원정보가 일치하지 않습니다.')
+            }else if(data.code === 200){
+                alert('로그인에 성공했습니다.')
+                inputLogin.classList.add('hide')
+                loginResult.classList.remove('hide')
+                loginResultId.innerHTML = `${loginId.value}님`
+                loginId.value = null
+                loginPw.value = null
+            }
+        })
+})
+
+// 로그아웃
+const logoutBtn = document.querySelector('.logout_btn')
+
+logoutBtn.addEventListener('click', function(){
+    inputLogin.classList.remove('hide')
+    loginResult.classList.add('hide')
+})

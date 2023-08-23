@@ -58,8 +58,14 @@ router.post('/login', expressAsyncHandler(async (req, res, next) => {
     }
 }))
 
-router.post('/logout', (req, res, next) => {
-    res.json("로그아웃")
+router.get('/logout', (req, res, next) => {
+    User.findOneAndUpdate({ _id: req.user._id }, { token: "" }, (err, user) => {
+        if (err) return res.json({ success: false, err })
+        return res.status(200).send({
+          success: true,
+          logout: "로그 아웃 완료",
+        })
+      })
 })
 
 // isAuth : 사용자를 수정할 권한이 있는지 검사하는 미들웨어
