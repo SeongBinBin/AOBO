@@ -192,7 +192,7 @@ header{
     margin-top: 3px;
     margin-bottom: 10px;
     display: flex;
-    width: 236px;
+    width: 242px;
     height: 15px;
     padding: 7px;
     border: 1px solid #c7c6c4;
@@ -210,7 +210,7 @@ header{
     font-size: 12px;
     cursor: pointer;
     color: #12192f;
-    margin-left: 2px;
+    margin-left: 8px;
     line-height: 15px;
     border-left: 1px solid #c7c6c4;
 }
@@ -407,7 +407,7 @@ header{
         width: 180px;
         margin-top: 3px;
         margin-bottom: 10px;
-        padding: 7px;
+        padding: 7px 10px;
     }
     .input_signup input::placeholder{
         font-size: 10px;
@@ -417,13 +417,13 @@ header{
         margin: auto 7px;
     }
     .id_group{
-        width: 180px;
+        width: 186px;
     }
     .signup_id{
         width: 120px;
     }
     .id_check{
-        font-size: 8px;
-        margin-left: 3px;
+        font-size: 9px;
+        margin-left: 5px;
     }
 }
