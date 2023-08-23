@@ -6,7 +6,7 @@ const saltRounds = 10
 const { Schema } = mongoose
 
 const userSchema = new Schema({ // 스키마 정의
-    id: {
+    userId: {
         type: String,
         required: true,
         unique: true,

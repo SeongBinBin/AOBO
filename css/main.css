@@ -102,15 +102,18 @@
     cursor: pointer;
 }
 
-@media (max-width: 1000px) {
-    .boxoffice_info, .more_Modal{
-        width: 800px;
-        height: 700px;
-        top: 50%; left: 50%;
-    }   
+.function_info{
+    position: fixed;
+    bottom: 100px;
+    left: 10px;
+    font-size: 14px;
+    text-align: center;
+    /* border: 1px solid #c7c6c4; */
+    background: #e4e0dd;
+    padding: 8px;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 1250px){
     .boxoffice_date{
         left: 0;
         text-align: center;
@@ -120,18 +123,38 @@
         margin: 0 auto;
     }
     .boxoffice_info, .more_Modal{
-        width: 650px;
+        width: 800px;
         height: 700px;
         top: 50%; left: 50%;
+    }   
+}
+
+@media (max-width: 850px) {
+    .boxoffice_info, .more_Modal{
+        width: 650px;
+    }   
+}
+
+@media (max-width: 700px) {
+    .boxoffice_info, .more_Modal{
+        width: 600px;
     } 
 }
 
-@media (max-width: 600px) {
+@media (max-width: 610px) {
     .boxoffice_info, .more_Modal{
-        width: 550px;
-        height: 700px;
-        top: 50%; left: 50%;
+        width: 500px;
     } 
+}
+
+@media (max-width: 520px){
+    .boxoffice_info, .more_Modal{
+        width: 440px;
+    } 
+    .boxoffice_info ul, .more_Modal ul{
+        margin-left: 10px;
+        font-size: 14px;
+    }
 }
 
 @media (max-width: 450px) {
@@ -153,7 +176,6 @@
     .boxoffice_info, .more_Modal{
         width: 360px;
         height: 570px;
-        top: 50%; left: 50%;
         margin-top: 30px;
     }    
     .boxoffice_info ul, .more_Modal ul{

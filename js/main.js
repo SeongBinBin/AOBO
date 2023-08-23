@@ -102,6 +102,7 @@ const modalSalesAcc = document.querySelector('.salesAcc')
 const modalScrnCnt = document.querySelector('.scrnCnt')
 const modalShowCnt = document.querySelector('.showCnt')
 const boxofficeInfoName = document.querySelector('.boxoffice_info_name')
+const functionInfo = document.querySelector('.function_info')
 
 const hidemovieCode = document.querySelector('.hide_movie_code')
 
@@ -111,6 +112,7 @@ function popupModal(e) {
     boxofficeInfo.classList.add('show')
     moveTop.classList.remove('show')
     moveTop.classList.add('cloaking')
+    functionInfo.classList.add('hide')
 
     const MovieCode = movieCode[clickedIndex]; hidemovieCode.innerHTML = `${MovieCode}`
     const MovieTitle = movieTitle[clickedIndex]; boxofficeInfoName.innerHTML = `${year}년 ${month}월 ${day}일 '${MovieTitle}' 정보` 
@@ -306,7 +308,7 @@ signupButton.addEventListener('click', function(){
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                id: signupId.value,
+                userId: signupId.value,
                 email: signupEmail.value,
                 password: signupPassword.value,
             })
@@ -347,7 +349,7 @@ idCheck.addEventListener('click', function(){
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                id: signupId.value
+                userId: signupId.value
             })
         })
         .then(response => response.json())
@@ -378,7 +380,7 @@ loginBtn.addEventListener('click', function(){
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                id: loginId.value,
+                userId: loginId.value,
                 password: loginPw.value
             })
         })
@@ -391,7 +393,8 @@ loginBtn.addEventListener('click', function(){
             }else if(data.code === 200){
                 alert('로그인에 성공했습니다.')
                 localStorage.setItem('loggedIn', 'true')
-                localStorage.setItem('userId', loginId.value)
+                localStorage.setItem('personalId', loginId.value)
+                localStorage.setItem('token', data.token)
 
                 inputLogin.classList.add('hide')
                 loginResult.classList.remove('hide')
@@ -405,10 +408,10 @@ loginBtn.addEventListener('click', function(){
 window.onload = function() {    // 새로 고침해도 로그인 정보 유지
     const isLoggedIn = localStorage.getItem('loggedIn')
     if (isLoggedIn === 'true') {
-        const userId = localStorage.getItem('userId')
+        const personalId = localStorage.getItem('personalId')
         inputLogin.classList.add('hide')
         loginResult.classList.remove('hide')
-        loginResultId.innerHTML = `${userId}님`
+        loginResultId.innerHTML = `${personalId}님`
     }
 }
 
@@ -417,7 +420,8 @@ const logoutBtn = document.querySelector('.logout_btn')
 
 logoutBtn.addEventListener('click', function(){
     localStorage.removeItem('loggedIn')
-    localStorage.removeItem('userId')
+    localStorage.removeItem('personalId')
+    localStorage.removeItem('token')
 
     inputLogin.classList.remove('hide')
     loginResult.classList.add('hide')
@@ -443,9 +447,7 @@ const updatePassword = document.querySelector('.update_password')
 const updatePasswordCheck = document.querySelector('.update_password_check')
 
 updateSubmit.addEventListener('click', function(){
-    const loggedInUserId = localStorage.getItem('userId')
-    console.log(loggedInUserId)
-    console.log(localStorage.getItem('token'))
+    const loggedInUserId = localStorage.getItem('personalId')
 
     if (updatePassword.value.length < 3){
         alert('비밀번호는 3글자 이상 입력해야합니다.')
@@ -466,10 +468,16 @@ updateSubmit.addEventListener('click', function(){
         .then(response => response.json())
         .then(data => {
             if(data.code === 200){
-                alert('정보가 업데이트되었습니다.')
+                alert(`정보가 업데이트되었습니다.\n다시 로그인 해주세요.`)
+
+                localStorage.removeItem('loggedIn')
+                localStorage.removeItem('personalId')
+                localStorage.removeItem('token')
+                location.reload(true)
+
                 updateEmail.value = null
                 updatePassword.value = null
-                passwordCheck.value = null
+                updatePasswordCheck.value = null
             }
         })
     }

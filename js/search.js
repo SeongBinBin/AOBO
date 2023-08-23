@@ -124,6 +124,7 @@ const modalSalesAcc = document.querySelector('.salesAcc')
 const modalScrnCnt = document.querySelector('.scrnCnt')
 const modalShowCnt = document.querySelector('.showCnt')
 const boxofficeInfoName = document.querySelector('.boxoffice_info_name')
+const functionInfo = document.querySelector('.function_info')
 
 const hidemovieCode = document.querySelector('.hide_movie_code')
 
@@ -131,7 +132,9 @@ function popupModal(e) {
     const clickedIndex = Array.from(choseItem).indexOf(e.currentTarget)
     boxofficeInfo.classList.remove('hide')
     boxofficeInfo.classList.add('show')
-    moveTop.classList.add('hide')
+    moveTop.classList.remove('show')
+    moveTop.classList.add('cloaking')
+    functionInfo.classList.add('hide')
 
     const MovieCode = movieCode[clickedIndex]; hidemovieCode.innerHTML = `${MovieCode}`
     const MovieTitle = movieTitle[clickedIndex]; boxofficeInfoName.innerHTML = `${year}년 ${month}월 ${day}일 '${MovieTitle}' 정보` 
@@ -225,7 +228,7 @@ for(let item of choseItem){
 function closeModal(){
     boxofficeInfo.classList.remove('show')
     boxofficeInfo.classList.add('hide')
-    moveTop.classList.remove('hide')
+    moveTop.classList.remove('cloaking')
     moveTop.classList.add('show')
 }
 infoClose.addEventListener('click', closeModal)
@@ -416,6 +419,7 @@ loginBtn.addEventListener('click', function(){
                 alert('로그인에 성공했습니다.')
                 localStorage.setItem('loggedIn', 'true')
                 localStorage.setItem('userId', loginId.value)
+                localStorage.setItem('token', data.token)
                 
                 inputLogin.classList.add('hide')
                 loginResult.classList.remove('hide')
@@ -445,4 +449,60 @@ logoutBtn.addEventListener('click', function(){
 
     inputLogin.classList.remove('hide')
     loginResult.classList.add('hide')
+})
+
+// 정보수정 버튼 클릭시 팝업
+const updateBtn = document.querySelector('.update_btn')
+const popupUpdate = document.querySelector('.popup_update')
+const updateClose = document.querySelector('.update_close')
+
+updateBtn.addEventListener('click', function(){
+    popupUpdate.classList.add('show')
+})
+
+updateClose.addEventListener('click', function(){
+    popupUpdate.classList.remove('show')
+})
+
+// 정보 수정 
+const updateSubmit = document.querySelector('.update_submit')
+const updateEmail = document.querySelector('.update_email')
+const updatePassword = document.querySelector('.update_password')
+const updatePasswordCheck = document.querySelector('.update_password_check')
+
+updateSubmit.addEventListener('click', function(){
+    const loggedInUserId = localStorage.getItem('personalId')
+
+    if (updatePassword.value.length < 3){
+        alert('비밀번호는 3글자 이상 입력해야합니다.')
+    }else if(updatePassword.value !== updatePasswordCheck.value){
+        alert('비밀번호가 일치하지않습니다.')
+    }else{
+        fetch(`http://localhost:5000/api/users/${loggedInUserId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify({
+                email: updateEmail.value,
+                password: updatePassword.value,
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.code === 200){
+                alert(`정보가 업데이트되었습니다.\n다시 로그인 해주세요.`)
+
+                localStorage.removeItem('loggedIn')
+                localStorage.removeItem('personalId')
+                localStorage.removeItem('token')
+                location.reload(true)
+
+                updateEmail.value = null
+                updatePassword.value = null
+                updatePasswordCheck.value = null
+            }
+        })
+    }
 })

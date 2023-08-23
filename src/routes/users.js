@@ -8,7 +8,7 @@ const router = express.Router() // 하위 url 로직을 처리하는 라우터 �
 router.post('/register', expressAsyncHandler(async (req, res, next) => {
     console.log(req.body)
     const user = new User({
-        id: req.body.id,
+        userId: req.body.userId,
         email: req.body.email,
         password: req.body.password,
     })
@@ -16,21 +16,21 @@ router.post('/register', expressAsyncHandler(async (req, res, next) => {
     if(!newUser){
         res.status(401).json({code: 401, message: 'Invalid User Data'})
     }else{
-        const { id, email } = newUser
+        const { userId, email } = newUser
         res.json({
             code: 200,
             token: generateToken(newUser),
-            id, email
+            userId, email
         })
     }
 }))
 
 router.post('/idcheck', expressAsyncHandler(async (req, res, next) => {
     console.log(req.body)
-    const checkId = req.body.id
+    const checkId = req.body.userId
 
     const sameUser = await User.findOne({
-        id: checkId
+        userId: checkId
     })
 
     if(sameUser || checkId === ''){
@@ -43,7 +43,7 @@ router.post('/idcheck', expressAsyncHandler(async (req, res, next) => {
 router.post('/login', expressAsyncHandler(async (req, res, next) => {
     console.log(req.body)
     const loginUser = await User.findOne({
-        id: req.body.id
+        userId: req.body.userId
     })
     if(!loginUser){
         res.status(401).json({code: 401, message: 'Invalid ID or Password'})
@@ -51,11 +51,11 @@ router.post('/login', expressAsyncHandler(async (req, res, next) => {
         const isMatch = await loginUser.comparePassword(req.body.password)
         
         if(isMatch){
-            const { id, email } = loginUser
+            const { userId, email } = loginUser
             res.json({
                 code: 200,
                 token: generateToken(loginUser),
-                id, email
+                userId, email
             })
         }else{
             res.status(401).json({code: 401, message: 'Invalid ID or Password'})
@@ -75,12 +75,12 @@ router.get('/logout', (req, res, next) => {
 })
 
 // isAuth : 사용자를 수정할 권한이 있는지 검사하는 미들웨어
-router.put('/:id', expressAsyncHandler(async (req, res, next) => {
-    const user = await User.findById(req.params.id)
+router.put('/:userId', expressAsyncHandler(async (req, res, next) => {
+    const user = await User.findOneAndUpdate(req.params.userId)
     if(!user){
         res.status(404).json({code: 404, message: 'User Not Founded'})
     }else{
-        user.id = req.body.id || user.id
+        user.userId = req.body.userId || user.userId
         user.email = req.body.email || user.email
         user.password = req.body.password || user.password
 
@@ -94,8 +94,8 @@ router.put('/:id', expressAsyncHandler(async (req, res, next) => {
     }
 }))
 
-router.delete('/:id', isAuth, expressAsyncHandler(async (req, res, next) => {
-    const user = await User.findByIdAndDelete(req.params.id)
+router.delete('/:userId', isAuth, expressAsyncHandler(async (req, res, next) => {
+    const user = await User.findByIdAndDelete(req.params.userId)
     if(!user) {
         res.status(404).json({code: 404, message: 'User Not Founded'})
     }else{
