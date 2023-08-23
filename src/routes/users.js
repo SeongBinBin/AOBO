@@ -33,7 +33,7 @@ router.post('/idcheck', expressAsyncHandler(async (req, res, next) => {
         id: checkId
     })
 
-    if(sameUser){
+    if(sameUser || checkId === ''){
         res.status(409).json({ code: 409, message: '중복된 ID입니다.' });
     }else{
         res.status(200).json({ code: 200, message: '사용가능한 ID입니다.' });

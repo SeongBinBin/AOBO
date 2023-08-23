@@ -296,7 +296,7 @@ signupButton.addEventListener('click', function(){
     if(signupPassword.value !== passwordCheck.value){
         alert('비밀번호가 일치하지않습니다.')
     }else{
-        fetch('http://localhost:5500/api/users/register', {
+        fetch('http://localhost:5000/api/users/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -327,7 +327,7 @@ signupClose.addEventListener('click', function(){
 const idCheck = document.querySelector('.id_check')
 
 idCheck.addEventListener('click', function(){
-    fetch('http://localhost:5500/api/users/idcheck', {
+    fetch('http://localhost:5000/api/users/idcheck', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -339,7 +339,7 @@ idCheck.addEventListener('click', function(){
         .then(response => response.json())
         .then(data => {
             if(data.code === 409){
-                alert('중복된 ID입니다.')
+                alert('사용 불가능한 ID입니다.')
             }else if(data.code === 200){
                 alert('사용 가능한 ID입니다.')
             }

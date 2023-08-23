@@ -74,9 +74,9 @@ header{
     height: 35px;
     background: #e4e0dd;
     position: fixed;
-    right: 300px;
-    border-left: 1px solid #c7c6c4;
-    border-bottom: 1px solid #c7c6c4;
+    /* right: 300px; */
+    /* border-left: 1px solid #c7c6c4;
+    border-bottom: 1px solid #c7c6c4; */
     cursor: pointer;
 }
 .popup_close{
@@ -90,7 +90,7 @@ header{
     font-weight: bold;
     font-size: 20px;
     text-align: center;
-    margin-top: 30px;
+    margin-top: 40px;
 }
 .input_login{
     width: 98%;
@@ -171,12 +171,12 @@ header{
     height: 15px;
     padding: 7px;
     border: 1px solid #c7c6c4;
+    border-radius: 3px;
 }
 .signup_id{
     outline: none;
     border: none;
     background: #e4e0dd;
-    border-right: 1px solid #c7c6c4;
 }
 .id_check{
     outline: none;
@@ -187,6 +187,7 @@ header{
     color: #12192f;
     margin-left: 2px;
     line-height: 15px;
+    border-left: 1px solid #c7c6c4;
 }
 .signup_email, .signup_password, .password_check{
     width: 236px;
@@ -197,6 +198,7 @@ header{
     border-bottom: 1px solid #c7c6c4;
     background: #e4e0dd;
     padding: 7px;
+    border-radius: 3px;
 }
 .input_signup input::placeholder{
     font-size: 12px;
@@ -333,14 +335,14 @@ header{
     .icon_box{
         width: 30px;
         height: 30px;
-        right: 250px;
+        /* right: 250px; */
     }
     .popup_close{
         left: 50%;
     }
     .popup_list h1{
         font-size: 15px;
-        margin-top: 30px;
+        margin-top: 40px;
     }
     .input_login{
         width: 95%;
@@ -392,6 +394,6 @@ header{
     }
     .id_check{
         font-size: 8px;
-        /* margin-left: 3px; */
+        margin-left: 3px;
     }
 }
