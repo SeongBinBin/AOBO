@@ -176,6 +176,7 @@ header{
 }
 .popup_update{
     height: 330px;
+    display: none;
 }
 .input_signup, .input_update{
     display: flex;
@@ -430,7 +431,7 @@ header{
         width: 120px;
     }
     .id_check{
-        font-size: 8px;
+        font-size: 6px;
         margin-left: 4px;
     }
 }
