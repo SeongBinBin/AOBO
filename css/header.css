@@ -155,11 +155,11 @@ header{
     color: rgba(18, 25, 47, .8);
     margin-top: 10px;
 }
-.login_btn:hover, .signup_btn:hover, .signup_submit:hover, .update_btn:hover, .logout_btn:hover{
+.login_btn:hover, .signup_btn:hover, .signup_submit:hover, .update_btn:hover, .logout_btn:hover, .update_submit:hover{
     background: rgba(199, 198, 196, .3);
 }
 
-.popup_signup{
+.popup_signup, .popup_update{
     top: 240px;
     width: 300px;
     height: 380px;
@@ -174,17 +174,20 @@ header{
     right: 0;
     display: none;
 }
-.input_signup{
+.popup_update{
+    height: 330px;
+}
+.input_signup, .input_update{
     display: flex;
     flex-direction: column;
     width: 250px;
     margin: 0 auto;
 }
-.input_signup h3{
+.input_signup h3, .input_update h3{
     font-weight: bold;
     font-size: 16px;
 }
-.input_signup p{
+.input_signup p, .input_update p{
     font-size: 12px;
     margin-bottom: 0;
 }
@@ -214,7 +217,7 @@ header{
     line-height: 15px;
     border-left: 1px solid #c7c6c4;
 }
-.signup_email, .signup_password, .password_check{
+.signup_email, .signup_password, .password_check, .update_email, .update_password, .update_password_check{
     width: 236px;
     margin-top: 3px;
     margin-bottom: 10px;
@@ -225,20 +228,21 @@ header{
     padding: 7px 10px;
     border-radius: 3px;
 }
-.input_signup input::placeholder{
+.input_signup input::placeholder, .input_update input::placeholder{
     font-size: 12px;
     color: rgba(18, 25, 47, .5);
 }
-.signup_submit{
-    width: 250px;
+.signup_submit, .update_submit{
+    width: 255px;
     margin: 0 auto;
     background: #e8e9eb;
     border: 1px solid #c7c6c4;
     cursor: pointer;
     color: rgba(18, 25, 47, .8);
 }
-.signup_close{
-    position: fixed;
+.signup_close, .update_close{
+    position: absolute;
+    top: 10px;
     right: 10px;
     margin-top: 5px;
     font-size: 20px;
@@ -389,31 +393,34 @@ header{
         gap: 1px;
     }
 
-    .popup_signup{
+    .popup_signup, .popup_update{
         width: 250px;
         height: 350px;
         top: 219px;
     }
-    .input_signup{
+    .popup_update{
+        height: 300px;
+    }
+    .input_signup, .input_update{
         width: 200px;
     }
-    .input_signup h3{
+    .input_signup h3, .input_update h3{
         font-size: 14px;
     }
-    .input_signup p{
+    .input_signup p, .input_update p{
         font-size: 10px;
     }
-    .signup_email, .signup_password, .password_check{
+    .signup_email, .signup_password, .password_check, .update_email, .update_password, .update_password_check{
         width: 180px;
         margin-top: 3px;
         margin-bottom: 10px;
         padding: 7px 10px;
     }
-    .input_signup input::placeholder{
+    .input_signup input::placeholder, .input_update input::placeholder{
         font-size: 10px;
     }
-    .signup_submit{
-        width: 180px;
+    .signup_submit, .update_submit{
+        width: 190px;
         margin: auto 7px;
     }
     .id_group{
