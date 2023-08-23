@@ -423,9 +423,54 @@ logoutBtn.addEventListener('click', function(){
     loginResult.classList.add('hide')
 })
 
-// 정보 수정
+// 정보수정 버튼 클릭시 팝업
 const updateBtn = document.querySelector('.update_btn')
+const popupUpdate = document.querySelector('.popup_update')
+const updateClose = document.querySelector('.update_close')
 
 updateBtn.addEventListener('click', function(){
+    popupUpdate.classList.add('show')
+})
 
+updateClose.addEventListener('click', function(){
+    popupUpdate.classList.remove('show')
+})
+
+// 정보 수정 
+const updateSubmit = document.querySelector('.update_submit')
+const updateEmail = document.querySelector('.update_email')
+const updatePassword = document.querySelector('.update_password')
+const updatePasswordCheck = document.querySelector('.update_password_check')
+
+updateSubmit.addEventListener('click', function(){
+    const loggedInUserId = localStorage.getItem('userId')
+    console.log(loggedInUserId)
+    console.log(localStorage.getItem('token'))
+
+    if (updatePassword.value.length < 3){
+        alert('비밀번호는 3글자 이상 입력해야합니다.')
+    }else if(updatePassword.value !== updatePasswordCheck.value){
+        alert('비밀번호가 일치하지않습니다.')
+    }else{
+        fetch(`http://localhost:5000/api/users/${loggedInUserId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify({
+                email: updateEmail.value,
+                password: updatePassword.value,
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.code === 200){
+                alert('정보가 업데이트되었습니다.')
+                updateEmail.value = null
+                updatePassword.value = null
+                passwordCheck.value = null
+            }
+        })
+    }
 })

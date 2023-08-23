@@ -75,7 +75,7 @@ router.get('/logout', (req, res, next) => {
 })
 
 // isAuth : 사용자를 수정할 권한이 있는지 검사하는 미들웨어
-router.post('/:id', expressAsyncHandler(async (req, res, next) => {
+router.put('/:id', expressAsyncHandler(async (req, res, next) => {
     const user = await User.findById(req.params.id)
     if(!user){
         res.status(404).json({code: 404, message: 'User Not Founded'})
@@ -85,11 +85,11 @@ router.post('/:id', expressAsyncHandler(async (req, res, next) => {
         user.password = req.body.password || user.password
 
         const updatedUser = await user.save()   // DB에 사용자정보 업데이트
-        const { id, email} = updatedUser
+        const { email, password } = updatedUser
         res.json({
             code: 200,
             token: generateToken(updatedUser),
-            id, email
+            email, password
         })
     }
 }))
