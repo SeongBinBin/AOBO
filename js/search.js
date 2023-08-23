@@ -316,8 +316,13 @@ const signupPassword = document.querySelector('.signup_password')
 const passwordCheck = document.querySelector('.password_check')
 
 signupButton.addEventListener('click', function(){
-    if(signupPassword.value !== passwordCheck.value){
+
+    if(signupPassword.value.length < 3){
+        alert('비밀번호는 3글자 이상 입력해야합니다.')
+    }else if(signupPassword.value !== passwordCheck.value){
         alert('비밀번호가 일치하지않습니다.')
+    }else if(signupEmail.value.indexOf('@') === -1){
+        alert('이메일 형식을 지켜주세요.')
     }else{
         fetch('http://localhost:5000/api/users/register', {
             method: 'POST',
@@ -407,6 +412,9 @@ loginBtn.addEventListener('click', function(){
                 alert('회원정보가 일치하지 않습니다.')
             }else if(data.code === 200){
                 alert('로그인에 성공했습니다.')
+                localStorage.setItem('loggedIn', 'true')
+                localStorage.setItem('userId', loginId.value)
+                
                 inputLogin.classList.add('hide')
                 loginResult.classList.remove('hide')
                 loginResultId.innerHTML = `${loginId.value}님`
@@ -416,10 +424,23 @@ loginBtn.addEventListener('click', function(){
         })
 })
 
+window.onload = function() {    // 새로 고침해도 로그인 정보 유지
+    const isLoggedIn = localStorage.getItem('loggedIn')
+    if (isLoggedIn === 'true') {
+        const userId = localStorage.getItem('userId')
+        inputLogin.classList.add('hide')
+        loginResult.classList.remove('hide')
+        loginResultId.innerHTML = `${userId}님`
+    }
+}
+
 // 로그아웃
 const logoutBtn = document.querySelector('.logout_btn')
 
 logoutBtn.addEventListener('click', function(){
+    localStorage.removeItem('loggedIn')
+    localStorage.removeItem('userId')
+
     inputLogin.classList.remove('hide')
     loginResult.classList.add('hide')
 })
