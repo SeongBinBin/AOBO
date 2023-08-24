@@ -1,0 +1,18 @@
+.movie_container{
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #12192f;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50px;
+    text-align: center;
+}
+
+.cgv, .lotte, .megabox{
+    flex: 1;
+}
+
+table, tr, td{
+    border: 1px solid #000;
+}

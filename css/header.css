@@ -40,13 +40,22 @@ header{
     margin-right: 50px;
     justify-content: space-evenly;
     width: 300px;
+    height: 100%;
     left: 0px;
+    text-align: center;
+}
+.home, .user{
+    line-height: 50px;
+}
+.info{
+    margin-top: 5px;
 }
 .header_group a{
     color: #12192f;
     text-decoration: none;
     font-weight: bold;
     font-size: 18px;
+    text-align: center;
 }
 .header_popup{
     color: #12192f;

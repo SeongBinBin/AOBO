@@ -21,15 +21,9 @@
             <a href="" class="header_title">AOBO</a>
             <a href="" class="AOBO_info">All Of the Box Office</a>
         </div>
-        <div class="date_input">
-            <input type="date" class="select_date" min="2004-01-01">
-            <span class="material-symbols-outlined search">
-                search
-            </span>
-        </div>
         <div class="header_group">
             <div class="home"><a href="../index.html">HOME</a></div>
-            <div class="info"><a href="./theater.html">THEATER<br>INFO</a></div>
+            <div class="info"><a href="">THEATER<br>INFO</a></div>
             <div class="user"><span class="header_popup">USER</span></div>
         </div>
         <div class="popup_list hide">
@@ -94,77 +88,94 @@
         </div>
     </header>
 
-    <div class="container">
-        <h1 class="boxoffice_date"></h1>
-
-        <div class="boxoffice">
-            <div class="item"> <img src="" class="movie_img" alt=""> <div class="movie_title"></div></div>
-            <div class="item"> <img src="" class="movie_img" alt=""> <div class="movie_title"></div></div>
-            <div class="item"> <img src="" class="movie_img" alt=""> <div class="movie_title"></div></div>
-            <div class="item"> <img src="" class="movie_img" alt=""> <div class="movie_title"></div></div>
-            <div class="item"> <img src="" class="movie_img" alt=""> <div class="movie_title"></div></div>
-            <div class="item"> <img src="" class="movie_img" alt=""> <div class="movie_title"></div></div>
-            <div class="item"> <img src="" class="movie_img" alt=""> <div class="movie_title"></div></div>
-            <div class="item"> <img src="" class="movie_img" alt=""> <div class="movie_title"></div></div>
-            <div class="item"> <img src="" class="movie_img" alt=""> <div class="movie_title"></div></div>
-            <div class="item"> <img src="" class="movie_img" alt=""> <div class="movie_title"></div></div>
+    <div class="movie_container">
+        <div class="cgv">
+            <h1>CGV</h1>
+            <table>
+                <tr>
+                    <td colspan="2">※용산cgv 기준</td>
+                    <td colspan="2">일반(2D)</td>
+                    <td colspan="2">일반(3D)</td>
+                    <td colspan="2">4DX(2D)</td>
+                    <td colspan="2">4DX(3D)</td>
+                    <td colspan="2">IMAX(2D)</td>
+                    <td colspan="2">IMAX(3D)</td>
+                </tr>
+                <tr>
+                    <td>요일</td>
+                    <td>시간대</td>
+                    <td>청소년</td><td>일반</td>
+                    <td>청소년</td><td>일반</td>
+                    <td>청소년</td><td>일반</td>
+                    <td>청소년</td><td>일반</td>
+                    <td>청소년</td><td>일반</td>
+                    <td>청소년</td><td>일반</td>
+                </tr>
+                <tr>
+                    <td rowspan="3">월 ~ 목</td>
+                    <td>모닝 ( 06:00 ~ )</td>
+                    <td>8,000</td><td>10,000</td>
+                    <td>11,000</td><td>12,000</td>
+                    <td>12,000</td><td>14,000</td>
+                    <td>15,000</td><td>17,000</td>
+                    <td>15,000</td><td>17,000</td>
+                    <td>18,000</td><td>20,000</td>
+                </tr>
+                <tr>
+                    <td>브런치 ( 10:01 ~ )</td>
+                    <td>10,000</td><td>13,000</td>
+                    <td>12,000</td><td>15,000</td>
+                    <td>12,000</td><td>18,000</td>
+                    <td>15,000</td><td>22,000</td>
+                    <td>16,000</td><td>20,000</td>
+                    <td>19,000</td><td>24,000</td>
+                </tr>
+                <tr>
+                    <td>일반 ( 13:01 ~ )</td>
+                    <td>11,000</td><td>14,000</td>
+                    <td>13,000</td><td>16,000</td>
+                    <td>13,000</td><td>19,000</td>
+                    <td>16,000</td><td>23,000</td>
+                    <td>17,000</td><td>21,000</td>
+                    <td>20,000</td><td>25,000</td>
+                </tr>
+                <tr>
+                    <td rowspan="3">금 ~ 일<br>(공휴일)</td>
+                    <td>모닝 ( 06:00 ~ )</td>
+                    <td>8,000</td><td>11,000</td>
+                    <td>11,000</td><td>13,000</td>
+                    <td>13,000</td><td>15,000</td>
+                    <td>16,000</td><td>18,000</td>
+                    <td>15,000</td><td>17,000</td>
+                    <td>18,000</td><td>20,000</td>
+                </tr>
+                <tr>
+                    <td>브런치 ( 10:01 ~ )</td>
+                    <td>12,000</td><td>15,000</td>
+                    <td>14,000</td><td>17,000</td>
+                    <td>13,000</td><td>20,000</td>
+                    <td>17,000</td><td>24,000</td>
+                    <td>17,000</td><td>22,000</td>
+                    <td>22,000</td><td>27,000</td>
+                </tr>
+                <tr>
+                    <td>일반 ( 13:01 ~ )</td>
+                    <td>12,000</td><td>15,000</td>
+                    <td>14,000</td><td>17,000</td>
+                    <td>13,000</td><td>20,000</td>
+                    <td>17,000</td><td>24,000</td>
+                    <td>17,000</td><td>22,000</td>
+                    <td>22,000</td><td>27,000</td>
+                </tr>
+            </table>
         </div>
-
-        <div class="boxoffice_info hide">
-            <span class="material-symbols-outlined info_close">
-                close
-            </span>
-            <p class="boxoffice_info_name"></p>
-            <ul>
-                <li class="hide_movie_code"></li>
-                <li class="rank"></li>
-                <li class="rankInten"></li>
-                <li class="openDt"></li>
-                <li class="audiCnt"></li>
-                <li class="audiInten"></li>
-                <li class="audiChange"></li>
-                <li class="audiAcc"></li>
-                <li class="salesAmt"></li>
-                <li class="salesShare"></li>
-                <li class="salesInten"></li>
-                <li class="salesChange"></li>
-                <li class="salesAcc"></li>
-                <li class="scrnCnt"></li>
-                <li class="showCnt"></li>
-            </ul>
-
-            <button class="more_info">이 영화의 상세정보가 궁금하신가요?</button>
+        <div class="lotte">
+            <h1>LOTTECINEMA</h1>
         </div>
-
-        <div class="more_Modal hide">
-            <span class="material-symbols-outlined go_back">
-                arrow_back_ios
-            </span>
-            <span class="material-symbols-outlined more_close">
-                close
-            </span>
-            <p class="movieNm"></p>
-            <ul>
-                <li class="showTm"></li>
-                <li class="typeNm"></li>
-                <li class="nationNm"></li>
-                <li class="genreStr"></li>
-                <li class="directors"></li>
-                <div class="actors_container"><li class="actors"></li></div>
-                <li class="showTypesStr"></li>
-                <li class="companys"></li>
-                <li class="audits"></li>
-            </ul>
-
+        <div class="megabox">
+            <h1>MEGABOX</h1>
         </div>
-
-        <span class="material-symbols-outlined go_up">
-            stat_2
-        </span>
-
-        <div class="function_info">영화를 클릭해 보세요!<br>해당 영화의 정보를 확인하실 수 있습니다.<br>(※ 영화 포스터의 정보가 정확하지 않을 수 있습니다.)</div>
     </div>
 
-<script src="../js/search.js"></script>
 </body>
 </html>
