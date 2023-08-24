@@ -41,11 +41,14 @@ inputDate.setAttribute("max", dateMaxFormat)
 const search = document.querySelector('.search')
 
 search.addEventListener('click', function(){
-    if (inputDate.value) {
+    if (isLoggedIn !== 'true'){
+        alert('로그인이 필요합니다.')
+    }
+    else if (inputDate.value) {
         const searchUrl = `html/search.html?date=${inputDate.value}`
         window.location.href = searchUrl
     } else {
-        alert("날짜를 선택해주세요.")
+        alert('날짜를 선택해주세요.')
     }
 })
 
@@ -296,6 +299,19 @@ function gotoTop(){
 }
 moveTop.addEventListener('click', gotoTop)
 
+function scrollUpHide(){    // 특정 위치까지 스크롤해야 버튼 나오게
+    if(scrollY >= 400){
+        moveTop.classList.remove('hide')
+        moveTop.classList.add('show')
+    }else{
+        moveTop.classList.remove('show')
+        moveTop.classList.add('hide')
+    }
+}
+
+scrollUpHide()
+window.addEventListener('scroll', scrollUpHide)
+
 // 헤더 아이콘 클릭 시 로그인 및 추가 정보 팝업
 const headerPopup = document.querySelector('.header_popup')
 const popupList = document.querySelector('.popup_list')
@@ -422,6 +438,7 @@ loginBtn.addEventListener('click', function(){
                 localStorage.setItem('loggedIn', 'true')
                 localStorage.setItem('personalId', loginId.value)
                 localStorage.setItem('token', data.token)
+                location.reload(true)
 
                 inputLogin.classList.add('hide')
                 loginResult.classList.remove('hide')
@@ -432,8 +449,10 @@ loginBtn.addEventListener('click', function(){
         })
 })
 
+const isLoggedIn = localStorage.getItem('loggedIn')
+console.log(isLoggedIn)
+
 window.onload = function() {    // 새로 고침해도 로그인 정보 유지
-    const isLoggedIn = localStorage.getItem('loggedIn')
     if (isLoggedIn === 'true') {
         const personalId = localStorage.getItem('personalId')
         inputLogin.classList.add('hide')

@@ -336,6 +336,19 @@ function gotoTop(){
 }
 moveTop.addEventListener('click', gotoTop)
 
+function scrollUpHide(){    // 특정 위치까지 스크롤해야 버튼 나오게
+    if(scrollY >= 400){
+        moveTop.classList.remove('hide')
+        moveTop.classList.add('show')
+    }else{
+        moveTop.classList.remove('show')
+        moveTop.classList.add('hide')
+    }
+}
+
+scrollUpHide()
+window.addEventListener('scroll', scrollUpHide)
+
 // 헤더 아이콘 클릭 시 로그인 및 추가 정보 팝업
 const headerPopup = document.querySelector('.header_popup')
 const popupList = document.querySelector('.popup_list')
