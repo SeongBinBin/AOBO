@@ -124,7 +124,7 @@ function fetchBoxOfficeData(){
                 if (movieImgUrl) {
                     changeImage(i, movieImgUrl)
                 }else{
-                    const noImage = '../img/no_image_icon.png'
+                    const noImage = '../img/no_image.jpg'
                     changeImage(i, noImage)
                 }
             }
