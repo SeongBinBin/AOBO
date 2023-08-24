@@ -1,23 +1,24 @@
 // const { response } = require("express")
 
 // 랜덤 대체 이미지 가져오기
-fetch('https://picsum.photos/v2/list?page=2&limit=20')
-    .then(response => response.json())
-    .then(data => {
-        const movieImgs = data.map(item => item.download_url)
+// fetch('https://picsum.photos/v2/list?page=2&limit=20')
+//     .then(response => response.json())
+//     .then(data => {
+//         const movieImgs = data.map(item => item.download_url)
 
-        for(let i = 0; i < movieImgs.length; i++){
-            changeImage(i, movieImgs[i])
-        }
-    })
-function changeImage(indexNum, arrayNum) {
-    const imageElement = document.getElementsByClassName('movie_img')[indexNum]
-    if (imageElement){
-      imageElement.src = arrayNum
-    }
-}
+//         for(let i = 0; i < movieImgs.length; i++){
+//             changeImage(i, movieImgs[i])
+//         }
+//     })
+// function changeImage(indexNum, arrayNum) {
+//     const imageElement = document.getElementsByClassName('movie_img')[indexNum]
+//     if (imageElement){
+//       imageElement.src = arrayNum
+//     }
+// }
 
 const API_KEY = '4780929b900d6e7e32787f2fc7dfac8e'  // api 키 값
+const POSTER_API_KEY = '00aff6e8497422f382abbb5a49b24f4f'
 
 // 오늘 날짜에서 하루를 뺀 날짜를 넣어주기
 const today = new Date()
@@ -52,6 +53,7 @@ search.addEventListener('click', function(){
 fetch(`https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=${API_KEY}&targetDt=${formattedDate}`)
     .then(response => response.json())
     .then(data => {
+        const dailyBoxOfficeList = data.boxOfficeResult.dailyBoxOfficeList
         movieCode = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.movieCd)
         movieTitle = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.movieNm)
         rank = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.rank)                 // 해당일자의 박스오피스 순위를 출력합니다.
@@ -69,9 +71,28 @@ fetch(`https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBox
         scrnCnt = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.scrnCnt)           // 해당일자에 상영한 스크린수를 출력합니다.
         showCnt = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.showCnt)           // 해당일자에 상영된 횟수를 출력합니다.
 
-        for(let i = 0; i < movieTitle.length; i++){
-            changeText(i, 'movie_title', `${i + 1}위 | ${movieTitle[i]}`)
-        }
+        Promise.all(dailyBoxOfficeList.map(item => {
+            return fetch(`https://api.themoviedb.org/3/search/movie?api_key=${POSTER_API_KEY}&query=${item.movieNm}&language=ko-KR`)
+                .then(response => response.json())
+                .then(data => {
+                    const movieImgs = data.results.map(result => result.poster_path)
+                    return movieImgs.length > 0 ? `https://image.tmdb.org/t/p/w400${movieImgs[0]}` : null
+                })
+        })).then(movieImgUrls => {
+            for (let i = 0; i < dailyBoxOfficeList.length; i++) {
+                const movieTitle = dailyBoxOfficeList[i].movieNm
+                const movieImgUrl = movieImgUrls[i]
+                const movieRank = dailyBoxOfficeList[i].rank
+
+                changeText(i, 'movie_title', `${movieRank}위 | ${movieTitle}`)
+                if (movieImgUrl) {
+                    changeImage(i, movieImgUrl)
+                }else{
+                    const placeholderImgUrl = 'https://via.placeholder.com/400x400'
+                    changeImage(i, placeholderImgUrl)
+                }
+            }
+        })
     })
 function changeText(index, className, content) {
     const textElement = document.getElementsByClassName(className)[index]
@@ -81,6 +102,12 @@ function changeText(index, className, content) {
 }
 function priceToString(price) {     // 3자리 숫자마다 콤마 넣어주기
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+}
+function changeImage(indexNum, arrayNum) {
+    const imageElement = document.getElementsByClassName('movie_img')[indexNum]
+    if (imageElement){
+      imageElement.src = arrayNum
+    }
 }
 
 // 아이템 클릭시 모달 창 팝업
@@ -419,9 +446,11 @@ window.onload = function() {    // 새로 고침해도 로그인 정보 유지
 const logoutBtn = document.querySelector('.logout_btn')
 
 logoutBtn.addEventListener('click', function(){
+    alert('로그아웃 되었습니다.')
     localStorage.removeItem('loggedIn')
     localStorage.removeItem('personalId')
     localStorage.removeItem('token')
+    location.reload(true)
 
     inputLogin.classList.remove('hide')
     loginResult.classList.add('hide')

@@ -1,21 +1,22 @@
 // 랜덤 대체 이미지 가져오기
-fetch('https://picsum.photos/v2/list?page=2&limit=20')
-    .then(response => response.json())
-    .then(data => {
-        const movieImgs = data.map(item => item.download_url)
+// fetch('https://picsum.photos/v2/list?page=2&limit=20')
+//     .then(response => response.json())
+//     .then(data => {
+//         const movieImgs = data.map(item => item.download_url)
 
-        for(let i = 0; i < movieImgs.length; i++){
-            changeImage(i, movieImgs[i])
-        }
-    })
-function changeImage(indexNum, arrayNum) {
-    const imageElement = document.getElementsByClassName('movie_img')[indexNum]
-    if (imageElement){
-      imageElement.src = arrayNum
-    }
-}
+//         for(let i = 0; i < movieImgs.length; i++){
+//             changeImage(i, movieImgs[i])
+//         }
+//     })
+// function changeImage(indexNum, arrayNum) {
+//     const imageElement = document.getElementsByClassName('movie_img')[indexNum]
+//     if (imageElement){
+//       imageElement.src = arrayNum
+//     }
+// }
 
 const API_KEY = '4780929b900d6e7e32787f2fc7dfac8e'  // api 키 값
+const POSTER_API_KEY = '00aff6e8497422f382abbb5a49b24f4f'
 
 // 오늘 날짜에서 하루를 뺀 날짜를 넣어주기
 var today = new Date()
@@ -71,30 +72,66 @@ window.onload = updateFormattedDate()   // 페이지 로드 시 함수 실행 (i
 // 영화 API에서 영화 이름 가져오기
 function fetchBoxOfficeData(){
     fetch(`https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=${API_KEY}&targetDt=${formattedDate}`)
-        .then(response => response.json())
-        .then(data => {
-            movieCode = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.movieCd)
-            movieTitle = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.movieNm)
-            rank = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.rank)                 // 해당일자의 박스오피스 순위를 출력합니다.
-            rankInten = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.rankInten)       // 전일대비 순위의 증감분을 출력합니다.
-            openDt = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.openDt)             // 영화의 개봉일을 출력합니다.
-            audiCnt = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.audiCnt)           // 해당일의 관객수를 출력합니다.
-            audiInten = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.audiInten)       // 전일 대비 관객수 증감분을 출력합니다.
-            audiChange = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.audiChange)     // 전일 대비 관객수 증감 비율을 출력합니다.
-            audiAcc = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.audiAcc)           // 누적관객수를 출력합니다.
-            salesAmt = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.salesAmt)         // 해당일의 매출액을 출력합니다.
-            salesShare = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.salesShare)     // 해당일자 상영작의 매출총액 대비 해당 영화의 매출비율을 출력합니다.
-            salesInten = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.salesInten)     // 전일 대비 매출액 증감분을 출력합니다.
-            salesChange = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.salesChange)   // 전일 대비 매출액 증감 비율을 출력합니다.
-            salesAcc = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.salesAcc)         // 누적매출액을 출력합니다.
-            scrnCnt = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.scrnCnt)           // 해당일자에 상영한 스크린수를 출력합니다.
-            showCnt = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.showCnt)           // 해당일자에 상영된 횟수를 출력합니다.
-        
-            for(let i = 0; i < movieTitle.length; i++){
-                changeText(i, 'movie_title', `${i + 1}위 | ${movieTitle[i]}`)
+    .then(response => response.json())
+    .then(data => {
+        const dailyBoxOfficeList = data.boxOfficeResult.dailyBoxOfficeList
+        movieCode = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.movieCd)
+        movieTitle = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.movieNm)
+        rank = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.rank)                 // 해당일자의 박스오피스 순위를 출력합니다.
+        rankInten = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.rankInten)       // 전일대비 순위의 증감분을 출력합니다.
+        openDt = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.openDt)             // 영화의 개봉일을 출력합니다.
+        audiCnt = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.audiCnt)           // 해당일의 관객수를 출력합니다.
+        audiInten = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.audiInten)       // 전일 대비 관객수 증감분을 출력합니다.
+        audiChange = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.audiChange)     // 전일 대비 관객수 증감 비율을 출력합니다.
+        audiAcc = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.audiAcc)           // 누적관객수를 출력합니다.
+        salesAmt = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.salesAmt)         // 해당일의 매출액을 출력합니다.
+        salesShare = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.salesShare)     // 해당일자 상영작의 매출총액 대비 해당 영화의 매출비율을 출력합니다.
+        salesInten = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.salesInten)     // 전일 대비 매출액 증감분을 출력합니다.
+        salesChange = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.salesChange)   // 전일 대비 매출액 증감 비율을 출력합니다.
+        salesAcc = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.salesAcc)         // 누적매출액을 출력합니다.
+        scrnCnt = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.scrnCnt)           // 해당일자에 상영한 스크린수를 출력합니다.
+        showCnt = data.boxOfficeResult.dailyBoxOfficeList.map(item => item.showCnt)           // 해당일자에 상영된 횟수를 출력합니다.
+
+        Promise.all(dailyBoxOfficeList.map(item => {
+            return fetch(`https://api.themoviedb.org/3/search/movie?api_key=${POSTER_API_KEY}&query=${item.movieNm}&language=ko-KR`)
+                .then(response => response.json())
+                .then(data => {
+                    // const movies = data.results;
+                    // let movieIndex = 0;
+
+                    // for (let i = 0; i < movies.length; i++) {
+                    //     if (movies[i].original_language === "ko") {
+                    //         movieIndex = i;
+                    //         break;
+                    //     }
+                    // }
+
+                    // const movieImgs = movies.map(result => result.poster_path);
+                    // const movieImgUrl = movieImgs[movieIndex] ? `https://image.tmdb.org/t/p/w300${movieImgs[movieIndex]}` : null;
+                    // return movieImgUrl;
+
+                    const movieImgs = data.results.map(result => result.poster_path)
+                    return movieImgs.length > 0 ? `https://image.tmdb.org/t/p/w400${movieImgs[0]}` : null
+                })
+        }))
+        .then(movieImgUrls => {
+            for (let i = 0; i < dailyBoxOfficeList.length; i++) {
+                const movieTitle = dailyBoxOfficeList[i].movieNm
+                const movieImgUrl = movieImgUrls[i]
+                const movieRank = dailyBoxOfficeList[i].rank
+                
+                changeText(i, 'movie_title', `${movieRank}위 | ${movieTitle}`)
+                if (movieImgUrl) {
+                    changeImage(i, movieImgUrl)
+                }else{
+                    const placeholderImgUrl = 'https://via.placeholder.com/400x400'
+                    changeImage(i, placeholderImgUrl)
+                }
             }
         })
+    })
 }
+
 function changeText(index, className, content) {
     const textElement = document.getElementsByClassName(className)[index]
     if (textElement) {
@@ -103,6 +140,12 @@ function changeText(index, className, content) {
 }
 function priceToString(price) {     // 3자리 숫자마다 콤마 넣어주기
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+}
+function changeImage(indexNum, arrayNum) {
+    const imageElement = document.getElementsByClassName('movie_img')[indexNum]
+    if (imageElement){
+      imageElement.src = arrayNum
+    }
 }
 
 // 아이템 클릭시 모달 창 팝업
@@ -445,9 +488,11 @@ window.onload = function() {    // 새로 고침해도 로그인 정보 유지
 const logoutBtn = document.querySelector('.logout_btn')
 
 logoutBtn.addEventListener('click', function(){
+    alert('로그아웃 되었습니다.')
     localStorage.removeItem('loggedIn')
     localStorage.removeItem('personalId')
     localStorage.removeItem('token')
+    location.reload(true)
 
     inputLogin.classList.remove('hide')
     loginResult.classList.add('hide')
