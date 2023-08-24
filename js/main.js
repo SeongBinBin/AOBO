@@ -41,13 +41,14 @@ inputDate.setAttribute("max", dateMaxFormat)
 const search = document.querySelector('.search')
 
 search.addEventListener('click', function(){
-    if (isLoggedIn !== 'true'){
-        alert('로그인이 필요합니다.')
-    }
-    else if (inputDate.value) {
+    // if (isLoggedIn !== 'true'){
+    //     alert('로그인이 필요합니다.')
+    // }
+    // else
+    if (inputDate.value) {
         const searchUrl = `html/search.html?date=${inputDate.value}`
         window.location.href = searchUrl
-    } else {
+    }else{
         alert('날짜를 선택해주세요.')
     }
 })
