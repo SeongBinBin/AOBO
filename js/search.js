@@ -96,7 +96,7 @@ function fetchBoxOfficeData(){
             return fetch(`https://api.themoviedb.org/3/search/movie?api_key=${POSTER_API_KEY}&query=${item.movieNm}&language=ko-KR`)
                 .then(response => response.json())
                 .then(data => {
-                    // const movies = data.results;
+                    // const movies = data.results; 
                     // let movieIndex = 0;
 
                     // for (let i = 0; i < movies.length; i++) {
@@ -108,7 +108,7 @@ function fetchBoxOfficeData(){
 
                     // const movieImgs = movies.map(result => result.poster_path);
                     // const movieImgUrl = movieImgs[movieIndex] ? `https://image.tmdb.org/t/p/w300${movieImgs[movieIndex]}` : null;
-                    // return movieImgUrl;
+                    // return movieImgUrl;              // 한국 작품을 우선적으로 찾는 코드
 
                     const movieImgs = data.results.map(result => result.poster_path)
                     return movieImgs.length > 0 ? `https://image.tmdb.org/t/p/w400${movieImgs[0]}` : null
@@ -124,7 +124,7 @@ function fetchBoxOfficeData(){
                 if (movieImgUrl) {
                     changeImage(i, movieImgUrl)
                 }else{
-                    const noImage = '../img/no_image.png'
+                    const noImage = '../img/no_image_icon.png'
                     changeImage(i, noImage)
                 }
             }
