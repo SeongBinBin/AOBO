@@ -57,6 +57,10 @@ function updateFormattedDate(){
     fetchBoxOfficeData()
 }
 function openSearch(){      // search 클릭할 때마다 url의 날짜값도 함께 변경해주기
+    // if (isLoggedIn !== 'true'){
+    //     alert('로그인이 필요합니다.')
+    // }
+    // else
     if (inputDate.value) {
         const searchUrl = `?date=${inputDate.value}`
         window.location.href = searchUrl

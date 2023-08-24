@@ -111,6 +111,12 @@
     border: 1px solid #989898;
     background: #e4e0dd;
     padding: 8px;
+    cursor: pointer;
+}
+.function_info_close{
+    position: absolute;
+    top: 0; right: 5px;
+    cursor: pointer;
 }
 
 @media (max-width: 1250px){

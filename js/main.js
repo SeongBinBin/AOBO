@@ -43,6 +43,9 @@ const search = document.querySelector('.search')
 search.addEventListener('click', function(){
     // if (isLoggedIn !== 'true'){
     //     alert('로그인이 필요합니다.')
+    //     headerPopup.classList.add('cloaking')
+    //     popupList.classList.remove('hide')
+    //     popupList.classList.add('show')
     // }
     // else
     if (inputDate.value) {
@@ -327,6 +330,12 @@ popupClose.addEventListener('click', function(){
     headerPopup.classList.remove('cloaking')
     popupList.classList.remove('show')
     popupList.classList.add('hide')
+})
+
+// 떠다니는 도움말 제거
+functionInfo.addEventListener('click', function(){
+    functionInfo.classList.remove('show')
+    functionInfo.classList.add('hide')
 })
 
 // 회원가입
