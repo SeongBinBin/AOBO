@@ -88,8 +88,8 @@ fetch(`https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBox
                 if (movieImgUrl) {
                     changeImage(i, movieImgUrl)
                 }else{
-                    const placeholderImgUrl = 'https://via.placeholder.com/400x400'
-                    changeImage(i, placeholderImgUrl)
+                    const noImage = '../img/no_image.png'
+                    changeImage(i, noImage)
                 }
             }
         })
