@@ -88,7 +88,6 @@ li{
 .special_theater{
     display: flex;
     flex-direction: column;
-    overflow-x: auto;
 }
 .special_theater h1{
     margin-top: 30px;
@@ -101,15 +100,14 @@ li{
     color: rgba(18, 25, 47, .6);
 }
 .special_theater_type{
-    display: flex;
-    gap: 10px;
+    overflow-x: auto;
     width: 100%;
-    justify-content: center;
-    white-space: nowrap;
+    /* width: 800px; */
 }
 .special_theater_type a{
     text-decoration-line: none;
-    width: 80px; height: 80px;
+    width: 80px;
+    height: 80px;
     border: 1px solid #c7c6c4;
     border-radius: 15px;
     padding: 10px;
@@ -121,4 +119,12 @@ li{
     top: 50%;
     transform: translateY(-50%);
     font-weight: bold;
+}
+.scroll_div{
+    display: flex;
+    gap: 10px;
+    width: 800px;
+    margin: 0 auto;
+    /* justify-content: center; */
+    white-space: nowrap;
 }
