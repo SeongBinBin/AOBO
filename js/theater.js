@@ -21,6 +21,13 @@ megaboxbtn.addEventListener('click', function(){
     megabox.classList.remove('hide')
 })
 
+// 새로고침 시 스크롤을 맨 위로
+window.onload = function(){
+    setTimeout(function(){
+        scrollTo(0, 0)
+    }, 100)
+}
+
 // 가로 스크롤 움직이기
 const scrollContainers = document.querySelectorAll('.table')
 let isDown = false // 플래그 : 현재 마우스 클릭여부 판단
