@@ -16,21 +16,23 @@
     display: flex;
     gap: 10px;
     width: 100%;
+    height: 110px;
 }
-.theater_choice button{
+.theater_choice span{
     cursor: pointer;
     padding: 10px;
     background-color: inherit;
     border: none;
     border-right: 1px solid #c7c6c4;
+    line-height: 120px;
 }
-.theater_choice button:nth-child(1){
+.theater_choice span:nth-child(1){
     border-left: 1px solid #c7c6c4;
 }
-.theater_choice button:hover{
+.theater_choice span:hover{
     background-color: rgba(199, 198, 196, .3);
 }
-.theater_choice button img{
+.theater_choice span img{
     background-size: contain;
 }
 
@@ -45,14 +47,11 @@ table{
 td{
     border-right: 1px solid #c7c6c4;
     border-bottom: 1px solid #c7c6c4;
+    padding: 5px;
 }
 
 .seat_type{
     border-top: 1px solid #c7c6c4;
-}
-
-td{
-    padding: 5px;
 }
 
 p{
