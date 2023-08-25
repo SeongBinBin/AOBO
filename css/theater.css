@@ -42,6 +42,10 @@
 
 table{
     width: 100%;
+    white-space: nowrap;
+}
+.table{
+    overflow-x: auto;
 }
 
 td{
@@ -79,4 +83,9 @@ li{
 
 .cgv p:nth-last-child(1), .lotte p:nth-last-child(1), .megabox p:nth-last-child(1){
     margin-bottom: 50px;
+}
+
+.special_theater a{
+    color: #12192f;
+    text-decoration-line: none;
 }

@@ -20,3 +20,35 @@ megaboxbtn.addEventListener('click', function(){
     lotte.classList.add('hide')
     megabox.classList.remove('hide')
 })
+
+const scrollContainer = document.querySelector('.table')
+let isDown = false // 플래그 : 현재 마우스 클릭여부 판단
+let startX // 마우스 클릭시 마우스의 x 좌표 
+let scrollLeft // 최근 스크롤바 위치 저장
+
+scrollContainer.addEventListener('mousedown', e => {
+  isDown = true
+  scrollContainer.classList.add('active')
+  // 컨테이너 기준 클릭한 마우스의 x 좌표
+  startX = e.pageX - scrollContainer.offsetLeft
+  // 현재 스크롤바 위치 저장
+  scrollLeft = scrollContainer.scrollLeft
+})
+
+function deactive(){
+  isDown = false
+  scrollContainer.classList.remove('active')
+}
+scrollContainer.addEventListener('mouseleave', deactive)
+scrollContainer.addEventListener('mouseup', deactive)
+
+scrollContainer.addEventListener('mousemove', e => {
+  if(!isDown) return
+  e.preventDefault()
+  // 마우스를 드래그할 때 현재 마우스의 x좌표
+  const x = e.pageX - scrollContainer.offsetLeft
+  // 마우스 드래그 지점에서 이전에 마우스 클릭지점까지 이동한 거리
+  const walk = x - startX
+  // 최근 스크롤바 위치에서 마우스 이동거리만큼 더하거나 빼줌
+  scrollContainer.scrollLeft = scrollLeft - walk
+})
