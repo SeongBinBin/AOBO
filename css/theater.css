@@ -128,3 +128,18 @@ li{
     /* justify-content: center; */
     white-space: nowrap;
 }
+
+@media (max-width: 450px) {
+    .theater_choice{
+        /* width: 250px; */
+        height: 80px;
+    }
+    .theater_choice span{
+        width: 80px;
+        padding: 10px;
+        line-height: 70px;
+    }
+    .theater_choice span img{
+        width: 80px;
+    }
+}
