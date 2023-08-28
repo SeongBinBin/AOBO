@@ -171,7 +171,6 @@ const modalSalesAcc = document.querySelector('.salesAcc')
 const modalScrnCnt = document.querySelector('.scrnCnt')
 const modalShowCnt = document.querySelector('.showCnt')
 const boxofficeInfoName = document.querySelector('.boxoffice_info_name')
-const functionInfo = document.querySelector('.function_info')
 
 const hidemovieCode = document.querySelector('.hide_movie_code')
 
@@ -181,7 +180,6 @@ function popupModal(e) {
     boxofficeInfo.classList.add('show')
     moveTop.classList.remove('show')
     moveTop.classList.add('cloaking')
-    functionInfo.classList.add('hide')
 
     const MovieCode = movieCode[clickedIndex]; hidemovieCode.innerHTML = `${MovieCode}`
     const MovieTitle = movieTitle[clickedIndex]; boxofficeInfoName.innerHTML = `${year}년 ${month}월 ${day}일 '${MovieTitle}' 정보` 
