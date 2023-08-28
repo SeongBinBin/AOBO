@@ -21,7 +21,6 @@
 .theater_choice span{
     cursor: pointer;
     padding: 10px;
-    background-color: inherit;
     border: none;
     border-right: 1px solid #c7c6c4;
     line-height: 120px;
@@ -41,6 +40,7 @@
 }
 
 .table{
+    margin-top: 50px;
     overflow-x: auto;
 }
 table{
@@ -137,6 +137,10 @@ p{
     width: 800px;
 }
 
+.activate{
+    background-color: rgba(199, 198, 196, .3);
+}
+
 @media (max-width: 450px) {
     .theater_choice{
         /* width: 250px; */
@@ -151,10 +155,10 @@ p{
         width: 80px;
     }
     p{
-        font-size: 12px;
+        font-size: 10px;
     }
     .discount_info, .discount_info li{
-        font-size: 12px;
+        font-size: 10px;
     }
     .theater_h1{
         font-size: 20px;

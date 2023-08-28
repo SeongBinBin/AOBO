@@ -92,3 +92,24 @@ specialTheater.forEach(scrollContainer => {
         scrollContainer.scrollLeft = scrollLeft - walk
       })
 })
+
+// 영화관 선택 클릭 후 색상 유지
+const cgvBtn = document.querySelector('.cgv_btn')
+const lotteBtn = document.querySelector('.lotte_btn')
+const megaboxBtn = document.querySelector('.megabox_btn')
+
+cgvBtn.addEventListener('click', function(){
+  cgvBtn.classList.add('activate')
+  lotteBtn.classList.remove('activate')
+  megaboxBtn.classList.remove('activate')
+})
+lotteBtn.addEventListener('click', function(){
+  lotteBtn.classList.add('activate')
+  cgvBtn.classList.remove('activate')
+  megaboxBtn.classList.remove('activate')
+})
+megaboxBtn.addEventListener('click', function(){
+  megaboxBtn.classList.add('activate')
+  cgvBtn.classList.remove('activate')
+  lotteBtn.classList.remove('activate')
+})
