@@ -29,7 +29,7 @@
     border-left: 1px solid #c7c6c4;
 }
 .theater_choice span:hover{
-    background-color: rgba(199, 198, 196, .3);
+    background-color: rgba(199, 198, 196, .7);
 }
 .theater_choice span img{
     background-size: contain;
@@ -138,7 +138,7 @@ p{
 }
 
 .activate{
-    background-color: rgba(199, 198, 196, .3);
+    background-color: rgba(199, 198, 196, .7);
 }
 
 @media (max-width: 450px) {
@@ -155,10 +155,14 @@ p{
         width: 80px;
     }
     p{
-        font-size: 10px;
+        /* font-size: 10px;
+        zoom: 0.8; */
+        font-size: .5rem;
     }
     .discount_info, .discount_info li{
-        font-size: 10px;
+        /* font-size: 10px;
+        zoom: 0.8; */
+        font-size: .5rem;
     }
     .theater_h1{
         font-size: 20px;
