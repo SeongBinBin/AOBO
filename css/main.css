@@ -5,7 +5,12 @@
 
 .boxoffice_date{
     position: relative;
-    top: 150px; left: 12%;
+    top: 150px; left: 11%;
+}
+
+.boxoffice{
+    display: grid;
+    gap: 30px;
 }
 
 .item{
@@ -16,6 +21,9 @@
     top: 200px; left: 15%;
     cursor: pointer;
     border-bottom: 1px solid rgba(193, 198, 203, .8);
+}
+.item:nth-last-child(1){
+    margin-bottom: 230px;
 }
 .item:hover{
     opacity: .8;
