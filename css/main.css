@@ -5,12 +5,7 @@
 
 .boxoffice_date{
     position: relative;
-    top: 150px; left: 15%;
-}
-
-.boxoffice{
-    display: grid;
-    gap: 30px;
+    top: 150px; left: 12%;
 }
 
 .item{
