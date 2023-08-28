@@ -69,15 +69,15 @@ p{
     text-align: left;
 }
 
-ul, li{
+.discount_info, .discount_info li{
     text-align: left;
     padding-left: 0;
 }
-ul{
+.discount_info{
     margin-top: 3px;
     margin-bottom: 3px;
 }
-li{
+.discount_info li{
     list-style: none;
 }
 
