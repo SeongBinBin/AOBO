@@ -121,6 +121,7 @@ headerPopup.addEventListener('click', function(){
     headerPopup.classList.add('cloaking')
     popupList.classList.remove('hide')
     popupList.classList.add('show')
+    loginId.focus()
 })
 popupClose.addEventListener('click', function(){
     headerPopup.classList.remove('cloaking')
@@ -260,6 +261,14 @@ window.onload = function() {    // 새로 고침해도 로그인 정보 유지
         loginResultId.innerHTML = `${personalId}님`
     }
 }
+
+// 비밀번호 입력 후 엔터키로 로그인 버튼 클릭
+loginPw.addEventListener("keyup", function (event) {
+    if (event.keyCode === 13) {
+      event.preventDefault()
+      loginBtn.click()
+    }
+})
 
 // 로그아웃
 const logoutBtn = document.querySelector('.logout_btn')

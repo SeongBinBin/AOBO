@@ -140,6 +140,7 @@ p{
 
 .activate{
     background-color: rgba(199, 198, 196, .7);
+    border-bottom: 3px solid #000;
 }
 
 @media (max-width: 601px){
