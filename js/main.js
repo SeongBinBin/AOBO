@@ -41,13 +41,13 @@ inputDate.setAttribute("max", dateMaxFormat)
 const search = document.querySelector('.search')
 
 search.addEventListener('click', function(){
-    // if (isLoggedIn !== 'true'){
-    //     alert('로그인이 필요합니다.')
-    //     headerPopup.classList.add('cloaking')
-    //     popupList.classList.remove('hide')
-    //     popupList.classList.add('show')
-    // }
-    // else
+    if (isLoggedIn !== 'true'){
+        alert('로그인이 필요합니다.')
+        headerPopup.classList.add('cloaking')
+        popupList.classList.remove('hide')
+        popupList.classList.add('show')
+    }
+    else
     if (inputDate.value) {
         const searchUrl = `html/search.html?date=${inputDate.value}`
         window.location.href = searchUrl
