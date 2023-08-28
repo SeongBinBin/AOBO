@@ -1,24 +1,42 @@
 const cgv = document.querySelector('.cgv')
 const lotte = document.querySelector('.lotte')
 const megabox = document.querySelector('.megabox')
-const cgvbtn = document.querySelector('.cgv_btn')
-const lottebtn = document.querySelector('.lotte_btn')
-const megaboxbtn = document.querySelector('.megabox_btn')
+const cgvBtn = document.querySelector('.cgv_btn')
+const lotteBtn = document.querySelector('.lotte_btn')
+const megaboxBtn = document.querySelector('.megabox_btn')
 
-cgvbtn.addEventListener('click', function(){
-    lotte.classList.add('hide')
-    megabox.classList.add('hide')
-    cgv.classList.remove('hide')
+function toggleActivate(button) {
+    if (button.classList.contains('activate')) {
+      button.classList.remove('activate')
+    } else {
+      button.classList.add('activate')
+    }
+}
+function toggleHide(table) {
+    if (table.classList.contains('hide')) {
+      table.classList.remove('hide')
+    } else {
+      table.classList.add('hide')
+    }
+}
+  
+cgvBtn.addEventListener('click', function() {
+    toggleActivate(cgvBtn)
+    toggleHide(cgv)
+    lotteBtn.classList.remove('activate'); megaboxBtn.classList.remove('activate')
+    lotte.classList.add('hide'); megabox.classList.add('hide')
 })
-lottebtn.addEventListener('click', function(){
-    cgv.classList.add('hide')
-    megabox.classList.add('hide')
-    lotte.classList.remove('hide')
+lotteBtn.addEventListener('click', function() {
+    toggleActivate(lotteBtn)
+    toggleHide(lotte)
+    cgvBtn.classList.remove('activate'); megaboxBtn.classList.remove('activate')
+    cgv.classList.add('hide'); megabox.classList.add('hide')
 })
-megaboxbtn.addEventListener('click', function(){
-    cgv.classList.add('hide')
-    lotte.classList.add('hide')
-    megabox.classList.remove('hide')
+megaboxBtn.addEventListener('click', function() {
+    toggleActivate(megaboxBtn)
+    toggleHide(megabox)
+    cgvBtn.classList.remove('activate'); lotteBtn.classList.remove('activate')
+    cgv.classList.add('hide'); lotte.classList.add('hide')
 })
 
 // 새로고침 시 스크롤을 맨 위로
@@ -91,27 +109,6 @@ specialTheater.forEach(scrollContainer => {
         // 최근 스크롤바 위치에서 마우스 이동거리만큼 더하거나 빼줌
         scrollContainer.scrollLeft = scrollLeft - walk
       })
-})
-
-// 영화관 선택 클릭 후 색상 유지
-const cgvBtn = document.querySelector('.cgv_btn')
-const lotteBtn = document.querySelector('.lotte_btn')
-const megaboxBtn = document.querySelector('.megabox_btn')
-
-cgvBtn.addEventListener('click', function(){
-  cgvBtn.classList.add('activate')
-  lotteBtn.classList.remove('activate')
-  megaboxBtn.classList.remove('activate')
-})
-lotteBtn.addEventListener('click', function(){
-  lotteBtn.classList.add('activate')
-  cgvBtn.classList.remove('activate')
-  megaboxBtn.classList.remove('activate')
-})
-megaboxBtn.addEventListener('click', function(){
-  megaboxBtn.classList.add('activate')
-  cgvBtn.classList.remove('activate')
-  lotteBtn.classList.remove('activate')
 })
 
 // 로그인 관련
