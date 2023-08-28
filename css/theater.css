@@ -2,7 +2,7 @@
     font-family: 'Noto Sans KR', sans-serif;
     color: #12192f;
     width: 100vw;
-    height: 100vh;
+    /* height: 100vh; */
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -144,6 +144,41 @@ p{
     background-color: rgba(199, 198, 196, .7);
 }
 
+@media (max-width: 601px){
+    .theater_choice span{
+        width: 150px;
+        line-height: 120px;
+    }
+    .theater_choice span img{
+        width: 150px;
+    }
+    .discount_p, .discount_info, .discount_info li, .plus{
+        font-size: 14px;
+    }
+    p{
+        font-size: 14px;
+    }
+    .theater_h1{
+        font-size: 20px;
+    }
+    td{
+        font-size: 14px;
+    }
+    .special_theater_type a{
+        min-width: 60px;
+        height: 60px;
+    }
+    .scroll_div_cgv{
+        width: 750px;
+    }
+    .scroll_div_lotte{
+        width: 950px;
+    }
+    .scroll_div_megabox{
+        width: 700px;
+    }
+}
+
 @media (max-width: 450px) {
     .theater_choice{
         /* width: 250px; */
@@ -157,12 +192,7 @@ p{
     .theater_choice span img{
         width: 80px;
     }
-    .discount_p{
-        /* font-size: 10px;
-        zoom: 0.8; */
-        font-size: .5rem;
-    }
-    .discount_info, .discount_info li{
+    .discount_p, .discount_info, .discount_info li, .plus{
         /* font-size: 10px;
         zoom: 0.8; */
         font-size: .5rem;

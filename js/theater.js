@@ -113,3 +113,223 @@ megaboxBtn.addEventListener('click', function(){
   cgvBtn.classList.remove('activate')
   lotteBtn.classList.remove('activate')
 })
+
+// 로그인 관련
+// 헤더 아이콘 클릭 시 로그인 및 추가 정보 팝업
+const headerPopup = document.querySelector('.header_popup')
+const popupList = document.querySelector('.popup_list')
+const popupClose = document.querySelector('.popup_close')
+
+headerPopup.addEventListener('click', function(){
+    headerPopup.classList.add('cloaking')
+    popupList.classList.remove('hide')
+    popupList.classList.add('show')
+})
+popupClose.addEventListener('click', function(){
+    headerPopup.classList.remove('cloaking')
+    popupList.classList.remove('show')
+    popupList.classList.add('hide')
+})
+
+// 회원가입
+const signupButton = document.querySelector('.signup_submit')
+const signupId = document.querySelector('.signup_id')
+const signupEmail = document.querySelector('.signup_email')
+const signupPassword = document.querySelector('.signup_password')
+const passwordCheck = document.querySelector('.password_check')
+const signupInputs = document.querySelectorAll('.input_signup input')
+
+signupButton.addEventListener('click', function(){
+    
+    if(signupPassword.value.length < 3){
+        alert('비밀번호는 3글자 이상 입력해야합니다.')
+    }else if(signupPassword.value !== passwordCheck.value){
+        alert('비밀번호가 일치하지않습니다.')
+    }else if(signupEmail.value.indexOf('@') === -1){
+        alert('이메일 형식을 지켜주세요.')
+    }else{
+        fetch('http://localhost:5000/api/users/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                userId: signupId.value,
+                email: signupEmail.value,
+                password: signupPassword.value,
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.code === 200){
+                alert('회원가입에 성공했습니다.')
+                popupSignup.classList.remove('show')
+                for(let input of signupInputs){ // 회원가입 성공 후 input 비워주기
+                    input.value = null
+                }
+            }
+        })
+    }
+})
+
+// SIGN UP 버튼 클릭시 회원가입 창 표시
+const signupBtn = document.querySelector('.signup_btn')
+const popupSignup = document.querySelector('.popup_signup')
+const signupClose = document.querySelector('.signup_close')
+
+signupBtn.addEventListener('click', function(){
+    popupSignup.classList.add('show')
+})
+
+signupClose.addEventListener('click', function(){
+    popupSignup.classList.remove('show')
+})
+
+// ID중복확인
+const idCheck = document.querySelector('.id_check')
+
+idCheck.addEventListener('click', function(){
+    fetch('http://localhost:5000/api/users/idcheck', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                userId: signupId.value
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.code === 409){
+                alert('사용 불가능한 ID입니다.')
+            }else if(data.code === 200){
+                alert('사용 가능한 ID입니다.')
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error)
+        })
+})
+
+// 로그인
+const loginBtn = document.querySelector('.login_btn')
+const loginId = document.querySelector('.login_id')
+const loginPw = document.querySelector('.login_pw')
+const inputLogin = document.querySelector('.input_login')
+const loginResult = document.querySelector('.login_result')
+const loginResultId = document.querySelector('.login_resultId')
+
+loginBtn.addEventListener('click', function(){
+    fetch('http://localhost:5000/api/users/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                userId: loginId.value,
+                password: loginPw.value
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.code === 401){
+                alert('회원정보가 일치하지 않습니다.')
+                loginId.value = null
+                loginPw.value = null
+            }else if(data.code === 200){
+                alert('로그인에 성공했습니다.')
+                localStorage.setItem('loggedIn', 'true')
+                localStorage.setItem('personalId', loginId.value)
+                localStorage.setItem('token', data.token)
+                location.reload(true)
+
+                inputLogin.classList.add('hide')
+                loginResult.classList.remove('hide')
+                loginResultId.innerHTML = `${loginId.value}님`
+                loginId.value = null
+                loginPw.value = null
+            }
+        })
+})
+
+const isLoggedIn = localStorage.getItem('loggedIn')
+console.log(isLoggedIn)
+
+window.onload = function() {    // 새로 고침해도 로그인 정보 유지
+    if (isLoggedIn === 'true') {
+        const personalId = localStorage.getItem('personalId')
+        inputLogin.classList.add('hide')
+        loginResult.classList.remove('hide')
+        loginResultId.innerHTML = `${personalId}님`
+    }
+}
+
+// 로그아웃
+const logoutBtn = document.querySelector('.logout_btn')
+
+logoutBtn.addEventListener('click', function(){
+    alert('로그아웃 되었습니다.')
+    localStorage.removeItem('loggedIn')
+    localStorage.removeItem('personalId')
+    localStorage.removeItem('token')
+    location.reload(true)
+
+    inputLogin.classList.remove('hide')
+    loginResult.classList.add('hide')
+})
+
+// 정보수정 버튼 클릭시 팝업
+const updateBtn = document.querySelector('.update_btn')
+const popupUpdate = document.querySelector('.popup_update')
+const updateClose = document.querySelector('.update_close')
+
+updateBtn.addEventListener('click', function(){
+    popupUpdate.classList.add('show')
+})
+
+updateClose.addEventListener('click', function(){
+    popupUpdate.classList.remove('show')
+})
+
+// 정보 수정 
+const updateSubmit = document.querySelector('.update_submit')
+const updateEmail = document.querySelector('.update_email')
+const updatePassword = document.querySelector('.update_password')
+const updatePasswordCheck = document.querySelector('.update_password_check')
+
+updateSubmit.addEventListener('click', function(){
+    const loggedInUserId = localStorage.getItem('personalId')
+
+    if (updatePassword.value.length < 3){
+        alert('비밀번호는 3글자 이상 입력해야합니다.')
+    }else if(updatePassword.value !== updatePasswordCheck.value){
+        alert('비밀번호가 일치하지않습니다.')
+    }else{
+        fetch(`http://localhost:5000/api/users/${loggedInUserId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify({
+                email: updateEmail.value,
+                password: updatePassword.value,
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.code === 200){
+                alert(`정보가 업데이트되었습니다.\n다시 로그인 해주세요.`)
+
+                localStorage.removeItem('loggedIn')
+                localStorage.removeItem('personalId')
+                localStorage.removeItem('token')
+                location.reload(true)
+
+                updateEmail.value = null
+                updatePassword.value = null
+                updatePasswordCheck.value = null
+            }
+        })
+    }
+})
