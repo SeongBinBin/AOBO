@@ -188,12 +188,12 @@ function popupModal(e) {
         directors = movieInfo.directors[0].peopleNm                                // 감독을 나타냅니다.         
         actors = movieInfo.actors.map(actor => actor.peopleNm)                     // 배우명을 출력합니다.         
 
-        showTypes = movieInfo.showTypes.map(showType => showType.showTypeGroupNm) // 상영형태 구분을 출력합니다.
+        showTypes = movieInfo.showTypes.map(showType => showType.showTypeGroupNm)  // 상영형태 구분을 출력합니다.
         const showTypesSet = new Set(showTypes)                                    // new Set을 사용해 중복 제거
         showTypesStr = [...showTypesSet].join(', ')                               
 
         companys = movieInfo.companys[0].companyNm                                 // 참여 영화사를 나타냅니다.
-        audits = movieInfo.audits[0].watchGradeNm                                 // 심의정보를 나타냅니다.
+        audits = movieInfo.audits[0].watchGradeNm                                  // 심의정보를 나타냅니다.
         
         changeText(0, 'movieNm', `${movieNm}`)
         changeText(0, 'showTm', `상영 시간 | ${showTm}분`)
