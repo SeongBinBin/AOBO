@@ -1,7 +1,7 @@
 ﻿## first-project
 
-###영상 시연
+### 시연 영상
 ----
 
-https://github.com/SeongBinBin/first-project/assets/132800670/0c088dcf-c1a1-4201-a851-cbea776e32c3
+https://github.com/SeongBinBin/first-project/assets/132800670/d6b86aca-9f1b-446f-959e-80078e802e08
 
