@@ -1,24 +1,5 @@
-// const { response } = require("express")
-
-// 랜덤 대체 이미지 가져오기
-// fetch('https://picsum.photos/v2/list?page=2&limit=20')
-//     .then(response => response.json())
-//     .then(data => {
-//         const movieImgs = data.map(item => item.download_url)
-
-//         for(let i = 0; i < movieImgs.length; i++){
-//             changeImage(i, movieImgs[i])
-//         }
-//     })
-// function changeImage(indexNum, arrayNum) {
-//     const imageElement = document.getElementsByClassName('movie_img')[indexNum]
-//     if (imageElement){
-//       imageElement.src = arrayNum
-//     }
-// }
-
-const API_KEY = '4780929b900d6e7e32787f2fc7dfac8e'  // api 키 값
-const POSTER_API_KEY = '00aff6e8497422f382abbb5a49b24f4f'
+const API_KEY = '4780929b900d6e7e32787f2fc7dfac8e'          // api 키 값
+const POSTER_API_KEY = '00aff6e8497422f382abbb5a49b24f4f'   // api 키 값
 
 // 오늘 날짜에서 하루를 뺀 날짜를 넣어주기
 const today = new Date()
@@ -349,7 +330,6 @@ const passwordCheck = document.querySelector('.password_check')
 const signupInputs = document.querySelectorAll('.input_signup input')
 
 signupButton.addEventListener('click', function(){
-    
     if(signupPassword.value.length < 3){
         alert('비밀번호는 3글자 이상 입력해야합니다.')
     }else if(signupPassword.value !== passwordCheck.value){
