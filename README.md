@@ -13,6 +13,7 @@
 
 https://github.com/SeongBinBin/first-project/assets/132800670/d6b86aca-9f1b-446f-959e-80078e802e08
 
+----
 
 * node 버전 – 20.5.0
 * npm 버전 – 9.8.0
