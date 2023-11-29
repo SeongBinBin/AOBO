@@ -427,7 +427,7 @@ loginBtn.addEventListener('click', function(){
                 loginPw.value = null
             }else if(data.code === 200){
                 alert('로그인에 성공했습니다.')
-                localStorage.setItem('loggedIn', 'true')
+                localStorage.setItem('loggedIn', 'true')        // localStorage
                 localStorage.setItem('personalId', loginId.value)
                 localStorage.setItem('token', data.token)
                 location.reload(true)
