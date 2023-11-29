@@ -337,7 +337,7 @@ signupButton.addEventListener('click', function(){
     }else if(signupEmail.value.indexOf('@') === -1){
         alert('이메일 형식을 지켜주세요.')
     }else{
-        fetch('http://localhost:5000/api/users/register', {
+        fetch('https://port-0-aobo-euegqv2llo5f0e8f.sel5.cloudtype.app/api/users/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -378,7 +378,7 @@ signupClose.addEventListener('click', function(){
 const idCheck = document.querySelector('.id_check')
 
 idCheck.addEventListener('click', function(){
-    fetch('http://localhost:5000/api/users/idcheck', {
+    fetch('https://port-0-aobo-euegqv2llo5f0e8f.sel5.cloudtype.app/api/users/idcheck', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -409,7 +409,7 @@ const loginResult = document.querySelector('.login_result')
 const loginResultId = document.querySelector('.login_resultId')
 
 loginBtn.addEventListener('click', function(){
-    fetch('http://localhost:5000/api/users/login', {
+    fetch('https://port-0-aobo-euegqv2llo5f0e8f.sel5.cloudtype.app/api/users/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -502,7 +502,7 @@ updateSubmit.addEventListener('click', function(){
     }else if(updatePassword.value !== updatePasswordCheck.value){
         alert('비밀번호가 일치하지않습니다.')
     }else{
-        fetch(`http://localhost:5000/api/users/${loggedInUserId}`, {
+        fetch(`https://port-0-aobo-euegqv2llo5f0e8f.sel5.cloudtype.app/api/users/${loggedInUserId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
