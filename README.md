@@ -6,6 +6,12 @@ AOBO는 All Of the BoxOffice의 줄임말입니다.
 
 선택한 날짜의 박스오피스 정보를 확인 가능하게끔 구현하였습니다.
 
+영화 진흥 위원회의 일별 박스오피스와 영화 상세정보 API를 사용하고,
+
+TMDB의 영화 API 정보 중 포스터 정보를 사용하였습니다.
+
+모바일 크기까지의 반응형 웹 설정을 하였습니다.
+
 ## API 정보
 
 [영화 진흥 위원회](https://www.kobis.or.kr/kobisopenapi/homepg/main/main.do) - 일별 박스오피스 API, 영화 상세정보 API
